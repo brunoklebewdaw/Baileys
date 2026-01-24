@@ -73,12 +73,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIHomeState _lastFetchTime.
-         * @member {"lastFetchTime"|undefined} _lastFetchTime
-         * @memberof AICommon.AIHomeState
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIHomeState.prototype, "_lastFetchTime", {
             get: $util.oneOfGetter($oneOfFields = ["lastFetchTime"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -351,6 +346,7 @@ $root.AICommon = (function() {
              * @property {string|null} [imageWdsIdentifier] AIHomeOption imageWdsIdentifier
              * @property {string|null} [imageTintColor] AIHomeOption imageTintColor
              * @property {string|null} [imageBackgroundColor] AIHomeOption imageBackgroundColor
+             * @property {string|null} [cardTypeId] AIHomeOption cardTypeId
              */
 
             /**
@@ -424,83 +420,62 @@ $root.AICommon = (function() {
              */
             AIHomeOption.prototype.imageBackgroundColor = null;
 
-            // OneOf field names bound to virtual getters and setters
-            var $oneOfFields;
-
             /**
-             * AIHomeOption _type.
-             * @member {"type"|undefined} _type
+             * AIHomeOption cardTypeId.
+             * @member {string|null|undefined} cardTypeId
              * @memberof AICommon.AIHomeState.AIHomeOption
              * @instance
              */
+            AIHomeOption.prototype.cardTypeId = null;
+
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_type", {
                 get: $util.oneOfGetter($oneOfFields = ["type"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _title.
-             * @member {"title"|undefined} _title
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_title", {
                 get: $util.oneOfGetter($oneOfFields = ["title"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _promptText.
-             * @member {"promptText"|undefined} _promptText
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_promptText", {
                 get: $util.oneOfGetter($oneOfFields = ["promptText"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _sessionId.
-             * @member {"sessionId"|undefined} _sessionId
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_sessionId", {
                 get: $util.oneOfGetter($oneOfFields = ["sessionId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _imageWdsIdentifier.
-             * @member {"imageWdsIdentifier"|undefined} _imageWdsIdentifier
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_imageWdsIdentifier", {
                 get: $util.oneOfGetter($oneOfFields = ["imageWdsIdentifier"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _imageTintColor.
-             * @member {"imageTintColor"|undefined} _imageTintColor
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_imageTintColor", {
                 get: $util.oneOfGetter($oneOfFields = ["imageTintColor"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIHomeOption _imageBackgroundColor.
-             * @member {"imageBackgroundColor"|undefined} _imageBackgroundColor
-             * @memberof AICommon.AIHomeState.AIHomeOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIHomeOption.prototype, "_imageBackgroundColor", {
                 get: $util.oneOfGetter($oneOfFields = ["imageBackgroundColor"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+
+            // Virtual OneOf for proto3 optional field
+            Object.defineProperty(AIHomeOption.prototype, "_cardTypeId", {
+                get: $util.oneOfGetter($oneOfFields = ["cardTypeId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
@@ -542,6 +517,8 @@ $root.AICommon = (function() {
                     writer.uint32(/* id 6, wireType 2 =*/50).string(message.imageTintColor);
                 if (message.imageBackgroundColor != null && Object.hasOwnProperty.call(message, "imageBackgroundColor"))
                     writer.uint32(/* id 7, wireType 2 =*/58).string(message.imageBackgroundColor);
+                if (message.cardTypeId != null && Object.hasOwnProperty.call(message, "cardTypeId"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.cardTypeId);
                 return writer;
             };
 
@@ -604,6 +581,10 @@ $root.AICommon = (function() {
                         }
                     case 7: {
                             message.imageBackgroundColor = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.cardTypeId = reader.string();
                             break;
                         }
                     default:
@@ -684,6 +665,11 @@ $root.AICommon = (function() {
                     if (!$util.isString(message.imageBackgroundColor))
                         return "imageBackgroundColor: string expected";
                 }
+                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId")) {
+                    properties._cardTypeId = 1;
+                    if (!$util.isString(message.cardTypeId))
+                        return "cardTypeId: string expected";
+                }
                 return null;
             };
 
@@ -735,6 +721,8 @@ $root.AICommon = (function() {
                     message.imageTintColor = String(object.imageTintColor);
                 if (object.imageBackgroundColor != null)
                     message.imageBackgroundColor = String(object.imageBackgroundColor);
+                if (object.cardTypeId != null)
+                    message.cardTypeId = String(object.cardTypeId);
                 return message;
             };
 
@@ -785,6 +773,11 @@ $root.AICommon = (function() {
                     object.imageBackgroundColor = message.imageBackgroundColor;
                     if (options.oneofs)
                         object._imageBackgroundColor = "imageBackgroundColor";
+                }
+                if (message.cardTypeId != null && message.hasOwnProperty("cardTypeId")) {
+                    object.cardTypeId = message.cardTypeId;
+                    if (options.oneofs)
+                        object._cardTypeId = "cardTypeId";
                 }
                 return object;
             };
@@ -874,12 +867,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotDocumentMessageMetadata _pluginType.
-         * @member {"pluginType"|undefined} _pluginType
-         * @memberof AICommon.BotDocumentMessageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotDocumentMessageMetadata.prototype, "_pluginType", {
             get: $util.oneOfGetter($oneOfFields = ["pluginType"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -1148,34 +1136,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * SessionTransparencyMetadata _disclaimerText.
-         * @member {"disclaimerText"|undefined} _disclaimerText
-         * @memberof AICommon.SessionTransparencyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SessionTransparencyMetadata.prototype, "_disclaimerText", {
             get: $util.oneOfGetter($oneOfFields = ["disclaimerText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * SessionTransparencyMetadata _hcaId.
-         * @member {"hcaId"|undefined} _hcaId
-         * @memberof AICommon.SessionTransparencyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SessionTransparencyMetadata.prototype, "_hcaId", {
             get: $util.oneOfGetter($oneOfFields = ["hcaId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * SessionTransparencyMetadata _sessionTransparencyType.
-         * @member {"sessionTransparencyType"|undefined} _sessionTransparencyType
-         * @memberof AICommon.SessionTransparencyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(SessionTransparencyMetadata.prototype, "_sessionTransparencyType", {
             get: $util.oneOfGetter($oneOfFields = ["sessionTransparencyType"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -1457,23 +1430,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRegenerateMetadata _messageKey.
-         * @member {"messageKey"|undefined} _messageKey
-         * @memberof AICommon.AIRegenerateMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRegenerateMetadata.prototype, "_messageKey", {
             get: $util.oneOfGetter($oneOfFields = ["messageKey"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRegenerateMetadata _responseTimestampMs.
-         * @member {"responseTimestampMs"|undefined} _responseTimestampMs
-         * @memberof AICommon.AIRegenerateMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRegenerateMetadata.prototype, "_responseTimestampMs", {
             get: $util.oneOfGetter($oneOfFields = ["responseTimestampMs"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -1806,111 +1769,61 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseSubMessage _messageType.
-         * @member {"messageType"|undefined} _messageType
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_messageType", {
             get: $util.oneOfGetter($oneOfFields = ["messageType"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _gridImageMetadata.
-         * @member {"gridImageMetadata"|undefined} _gridImageMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_gridImageMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["gridImageMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _messageText.
-         * @member {"messageText"|undefined} _messageText
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_messageText", {
             get: $util.oneOfGetter($oneOfFields = ["messageText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _imageMetadata.
-         * @member {"imageMetadata"|undefined} _imageMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_imageMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["imageMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _codeMetadata.
-         * @member {"codeMetadata"|undefined} _codeMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_codeMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["codeMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _tableMetadata.
-         * @member {"tableMetadata"|undefined} _tableMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_tableMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["tableMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _dynamicMetadata.
-         * @member {"dynamicMetadata"|undefined} _dynamicMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_dynamicMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["dynamicMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _latexMetadata.
-         * @member {"latexMetadata"|undefined} _latexMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_latexMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["latexMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _mapMetadata.
-         * @member {"mapMetadata"|undefined} _mapMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_mapMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["mapMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseSubMessage _contentItemsMetadata.
-         * @member {"contentItemsMetadata"|undefined} _contentItemsMetadata
-         * @memberof AICommon.AIRichResponseSubMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseSubMessage.prototype, "_contentItemsMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["contentItemsMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -2407,12 +2320,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseContentItemsMetadata _contentType.
-         * @member {"contentType"|undefined} _contentType
-         * @memberof AICommon.AIRichResponseContentItemsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseContentItemsMetadata.prototype, "_contentType", {
             get: $util.oneOfGetter($oneOfFields = ["contentType"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -2937,45 +2845,25 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIRichResponseReelItem _title.
-             * @member {"title"|undefined} _title
-             * @memberof AICommon.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseReelItem.prototype, "_title", {
                 get: $util.oneOfGetter($oneOfFields = ["title"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseReelItem _profileIconUrl.
-             * @member {"profileIconUrl"|undefined} _profileIconUrl
-             * @memberof AICommon.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseReelItem.prototype, "_profileIconUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["profileIconUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseReelItem _thumbnailUrl.
-             * @member {"thumbnailUrl"|undefined} _thumbnailUrl
-             * @memberof AICommon.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseReelItem.prototype, "_thumbnailUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["thumbnailUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseReelItem _videoUrl.
-             * @member {"videoUrl"|undefined} _videoUrl
-             * @memberof AICommon.AIRichResponseContentItemsMetadata.AIRichResponseReelItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseReelItem.prototype, "_videoUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["videoUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -3310,56 +3198,31 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseMapMetadata _centerLatitude.
-         * @member {"centerLatitude"|undefined} _centerLatitude
-         * @memberof AICommon.AIRichResponseMapMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMapMetadata.prototype, "_centerLatitude", {
             get: $util.oneOfGetter($oneOfFields = ["centerLatitude"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseMapMetadata _centerLongitude.
-         * @member {"centerLongitude"|undefined} _centerLongitude
-         * @memberof AICommon.AIRichResponseMapMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMapMetadata.prototype, "_centerLongitude", {
             get: $util.oneOfGetter($oneOfFields = ["centerLongitude"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseMapMetadata _latitudeDelta.
-         * @member {"latitudeDelta"|undefined} _latitudeDelta
-         * @memberof AICommon.AIRichResponseMapMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMapMetadata.prototype, "_latitudeDelta", {
             get: $util.oneOfGetter($oneOfFields = ["latitudeDelta"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseMapMetadata _longitudeDelta.
-         * @member {"longitudeDelta"|undefined} _longitudeDelta
-         * @memberof AICommon.AIRichResponseMapMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMapMetadata.prototype, "_longitudeDelta", {
             get: $util.oneOfGetter($oneOfFields = ["longitudeDelta"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseMapMetadata _showInfoList.
-         * @member {"showInfoList"|undefined} _showInfoList
-         * @memberof AICommon.AIRichResponseMapMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseMapMetadata.prototype, "_showInfoList", {
             get: $util.oneOfGetter($oneOfFields = ["showInfoList"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -3717,56 +3580,31 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIRichResponseMapAnnotation _annotationNumber.
-             * @member {"annotationNumber"|undefined} _annotationNumber
-             * @memberof AICommon.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_annotationNumber", {
                 get: $util.oneOfGetter($oneOfFields = ["annotationNumber"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseMapAnnotation _latitude.
-             * @member {"latitude"|undefined} _latitude
-             * @memberof AICommon.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_latitude", {
                 get: $util.oneOfGetter($oneOfFields = ["latitude"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseMapAnnotation _longitude.
-             * @member {"longitude"|undefined} _longitude
-             * @memberof AICommon.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_longitude", {
                 get: $util.oneOfGetter($oneOfFields = ["longitude"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseMapAnnotation _title.
-             * @member {"title"|undefined} _title
-             * @memberof AICommon.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_title", {
                 get: $util.oneOfGetter($oneOfFields = ["title"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseMapAnnotation _body.
-             * @member {"body"|undefined} _body
-             * @memberof AICommon.AIRichResponseMapMetadata.AIRichResponseMapAnnotation
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseMapAnnotation.prototype, "_body", {
                 get: $util.oneOfGetter($oneOfFields = ["body"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -4069,12 +3907,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseLatexMetadata _text.
-         * @member {"text"|undefined} _text
-         * @memberof AICommon.AIRichResponseLatexMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseLatexMetadata.prototype, "_text", {
             get: $util.oneOfGetter($oneOfFields = ["text"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -4396,100 +4229,55 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIRichResponseLatexExpression _latexExpression.
-             * @member {"latexExpression"|undefined} _latexExpression
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_latexExpression", {
                 get: $util.oneOfGetter($oneOfFields = ["latexExpression"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _url.
-             * @member {"url"|undefined} _url
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_url", {
                 get: $util.oneOfGetter($oneOfFields = ["url"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _width.
-             * @member {"width"|undefined} _width
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_width", {
                 get: $util.oneOfGetter($oneOfFields = ["width"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _height.
-             * @member {"height"|undefined} _height
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_height", {
                 get: $util.oneOfGetter($oneOfFields = ["height"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _fontHeight.
-             * @member {"fontHeight"|undefined} _fontHeight
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_fontHeight", {
                 get: $util.oneOfGetter($oneOfFields = ["fontHeight"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _imageTopPadding.
-             * @member {"imageTopPadding"|undefined} _imageTopPadding
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_imageTopPadding", {
                 get: $util.oneOfGetter($oneOfFields = ["imageTopPadding"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _imageLeadingPadding.
-             * @member {"imageLeadingPadding"|undefined} _imageLeadingPadding
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_imageLeadingPadding", {
                 get: $util.oneOfGetter($oneOfFields = ["imageLeadingPadding"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _imageBottomPadding.
-             * @member {"imageBottomPadding"|undefined} _imageBottomPadding
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_imageBottomPadding", {
                 get: $util.oneOfGetter($oneOfFields = ["imageBottomPadding"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseLatexExpression _imageTrailingPadding.
-             * @member {"imageTrailingPadding"|undefined} _imageTrailingPadding
-             * @memberof AICommon.AIRichResponseLatexMetadata.AIRichResponseLatexExpression
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseLatexExpression.prototype, "_imageTrailingPadding", {
                 get: $util.oneOfGetter($oneOfFields = ["imageTrailingPadding"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -4854,12 +4642,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseUnifiedResponse _data.
-         * @member {"data"|undefined} _data
-         * @memberof AICommon.AIRichResponseUnifiedResponse
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseUnifiedResponse.prototype, "_data", {
             get: $util.oneOfGetter($oneOfFields = ["data"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -5107,45 +4890,25 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseDynamicMetadata _type.
-         * @member {"type"|undefined} _type
-         * @memberof AICommon.AIRichResponseDynamicMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseDynamicMetadata.prototype, "_type", {
             get: $util.oneOfGetter($oneOfFields = ["type"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseDynamicMetadata _version.
-         * @member {"version"|undefined} _version
-         * @memberof AICommon.AIRichResponseDynamicMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseDynamicMetadata.prototype, "_version", {
             get: $util.oneOfGetter($oneOfFields = ["version"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseDynamicMetadata _url.
-         * @member {"url"|undefined} _url
-         * @memberof AICommon.AIRichResponseDynamicMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseDynamicMetadata.prototype, "_url", {
             get: $util.oneOfGetter($oneOfFields = ["url"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseDynamicMetadata _loopCount.
-         * @member {"loopCount"|undefined} _loopCount
-         * @memberof AICommon.AIRichResponseDynamicMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseDynamicMetadata.prototype, "_loopCount", {
             get: $util.oneOfGetter($oneOfFields = ["loopCount"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -5477,12 +5240,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseTableMetadata _title.
-         * @member {"title"|undefined} _title
-         * @memberof AICommon.AIRichResponseTableMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseTableMetadata.prototype, "_title", {
             get: $util.oneOfGetter($oneOfFields = ["title"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -5742,12 +5500,7 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIRichResponseTableRow _isHeading.
-             * @member {"isHeading"|undefined} _isHeading
-             * @memberof AICommon.AIRichResponseTableMetadata.AIRichResponseTableRow
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseTableRow.prototype, "_isHeading", {
                 get: $util.oneOfGetter($oneOfFields = ["isHeading"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -6008,12 +5761,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseCodeMetadata _codeLanguage.
-         * @member {"codeLanguage"|undefined} _codeLanguage
-         * @memberof AICommon.AIRichResponseCodeMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseCodeMetadata.prototype, "_codeLanguage", {
             get: $util.oneOfGetter($oneOfFields = ["codeLanguage"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -6272,23 +6020,13 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIRichResponseCodeBlock _highlightType.
-             * @member {"highlightType"|undefined} _highlightType
-             * @memberof AICommon.AIRichResponseCodeMetadata.AIRichResponseCodeBlock
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseCodeBlock.prototype, "_highlightType", {
                 get: $util.oneOfGetter($oneOfFields = ["highlightType"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * AIRichResponseCodeBlock _codeContent.
-             * @member {"codeContent"|undefined} _codeContent
-             * @memberof AICommon.AIRichResponseCodeMetadata.AIRichResponseCodeBlock
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIRichResponseCodeBlock.prototype, "_codeContent", {
                 get: $util.oneOfGetter($oneOfFields = ["codeContent"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -6615,45 +6353,25 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseInlineImageMetadata _imageUrl.
-         * @member {"imageUrl"|undefined} _imageUrl
-         * @memberof AICommon.AIRichResponseInlineImageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseInlineImageMetadata.prototype, "_imageUrl", {
             get: $util.oneOfGetter($oneOfFields = ["imageUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseInlineImageMetadata _imageText.
-         * @member {"imageText"|undefined} _imageText
-         * @memberof AICommon.AIRichResponseInlineImageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseInlineImageMetadata.prototype, "_imageText", {
             get: $util.oneOfGetter($oneOfFields = ["imageText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseInlineImageMetadata _alignment.
-         * @member {"alignment"|undefined} _alignment
-         * @memberof AICommon.AIRichResponseInlineImageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseInlineImageMetadata.prototype, "_alignment", {
             get: $util.oneOfGetter($oneOfFields = ["alignment"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseInlineImageMetadata _tapLinkUrl.
-         * @member {"tapLinkUrl"|undefined} _tapLinkUrl
-         * @memberof AICommon.AIRichResponseInlineImageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseInlineImageMetadata.prototype, "_tapLinkUrl", {
             get: $util.oneOfGetter($oneOfFields = ["tapLinkUrl"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -6981,12 +6699,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseGridImageMetadata _gridImageUrl.
-         * @member {"gridImageUrl"|undefined} _gridImageUrl
-         * @memberof AICommon.AIRichResponseGridImageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseGridImageMetadata.prototype, "_gridImageUrl", {
             get: $util.oneOfGetter($oneOfFields = ["gridImageUrl"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -7263,34 +6976,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIRichResponseImageURL _imagePreviewUrl.
-         * @member {"imagePreviewUrl"|undefined} _imagePreviewUrl
-         * @memberof AICommon.AIRichResponseImageURL
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseImageURL.prototype, "_imagePreviewUrl", {
             get: $util.oneOfGetter($oneOfFields = ["imagePreviewUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseImageURL _imageHighResUrl.
-         * @member {"imageHighResUrl"|undefined} _imageHighResUrl
-         * @memberof AICommon.AIRichResponseImageURL
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseImageURL.prototype, "_imageHighResUrl", {
             get: $util.oneOfGetter($oneOfFields = ["imageHighResUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIRichResponseImageURL _sourceUrl.
-         * @member {"sourceUrl"|undefined} _sourceUrl
-         * @memberof AICommon.AIRichResponseImageURL
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIRichResponseImageURL.prototype, "_sourceUrl", {
             get: $util.oneOfGetter($oneOfFields = ["sourceUrl"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -7553,23 +7251,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMessageSharingInfo _botEntryPointOrigin.
-         * @member {"botEntryPointOrigin"|undefined} _botEntryPointOrigin
-         * @memberof AICommon.BotMessageSharingInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMessageSharingInfo.prototype, "_botEntryPointOrigin", {
             get: $util.oneOfGetter($oneOfFields = ["botEntryPointOrigin"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMessageSharingInfo _forwardScore.
-         * @member {"forwardScore"|undefined} _forwardScore
-         * @memberof AICommon.BotMessageSharingInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMessageSharingInfo.prototype, "_forwardScore", {
             get: $util.oneOfGetter($oneOfFields = ["forwardScore"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -7727,6 +7415,10 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
+                case 41:
+                case 45:
                     break;
                 }
             }
@@ -7913,6 +7605,22 @@ $root.AICommon = (function() {
             case 38:
                 message.botEntryPointOrigin = 38;
                 break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.botEntryPointOrigin = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.botEntryPointOrigin = 40;
+                break;
+            case "ASK_META_AI_NO_SEARCH_RESULTS":
+            case 41:
+                message.botEntryPointOrigin = 41;
+                break;
+            case "META_AI_SETTINGS":
+            case 45:
+                message.botEntryPointOrigin = 45;
+                break;
             }
             if (object.forwardScore != null)
                 message.forwardScore = object.forwardScore >>> 0;
@@ -8027,34 +7735,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * ForwardedAIBotMessageInfo _botName.
-         * @member {"botName"|undefined} _botName
-         * @memberof AICommon.ForwardedAIBotMessageInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(ForwardedAIBotMessageInfo.prototype, "_botName", {
             get: $util.oneOfGetter($oneOfFields = ["botName"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * ForwardedAIBotMessageInfo _botJid.
-         * @member {"botJid"|undefined} _botJid
-         * @memberof AICommon.ForwardedAIBotMessageInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(ForwardedAIBotMessageInfo.prototype, "_botJid", {
             get: $util.oneOfGetter($oneOfFields = ["botJid"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * ForwardedAIBotMessageInfo _creatorName.
-         * @member {"creatorName"|undefined} _creatorName
-         * @memberof AICommon.ForwardedAIBotMessageInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(ForwardedAIBotMessageInfo.prototype, "_creatorName", {
             get: $util.oneOfGetter($oneOfFields = ["creatorName"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -8362,78 +8055,43 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotFeedbackMessage _messageKey.
-         * @member {"messageKey"|undefined} _messageKey
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_messageKey", {
             get: $util.oneOfGetter($oneOfFields = ["messageKey"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _kind.
-         * @member {"kind"|undefined} _kind
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_kind", {
             get: $util.oneOfGetter($oneOfFields = ["kind"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _text.
-         * @member {"text"|undefined} _text
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_text", {
             get: $util.oneOfGetter($oneOfFields = ["text"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _kindNegative.
-         * @member {"kindNegative"|undefined} _kindNegative
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_kindNegative", {
             get: $util.oneOfGetter($oneOfFields = ["kindNegative"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _kindPositive.
-         * @member {"kindPositive"|undefined} _kindPositive
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_kindPositive", {
             get: $util.oneOfGetter($oneOfFields = ["kindPositive"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _kindReport.
-         * @member {"kindReport"|undefined} _kindReport
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_kindReport", {
             get: $util.oneOfGetter($oneOfFields = ["kindReport"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotFeedbackMessage _sideBySideSurveyMetadata.
-         * @member {"sideBySideSurveyMetadata"|undefined} _sideBySideSurveyMetadata
-         * @memberof AICommon.BotFeedbackMessage
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotFeedbackMessage.prototype, "_sideBySideSurveyMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["sideBySideSurveyMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -9057,100 +8715,55 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * SideBySideSurveyMetadata _selectedRequestId.
-             * @member {"selectedRequestId"|undefined} _selectedRequestId
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_selectedRequestId", {
                 get: $util.oneOfGetter($oneOfFields = ["selectedRequestId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _surveyId.
-             * @member {"surveyId"|undefined} _surveyId
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_surveyId", {
                 get: $util.oneOfGetter($oneOfFields = ["surveyId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _simonSessionFbid.
-             * @member {"simonSessionFbid"|undefined} _simonSessionFbid
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_simonSessionFbid", {
                 get: $util.oneOfGetter($oneOfFields = ["simonSessionFbid"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _responseOtid.
-             * @member {"responseOtid"|undefined} _responseOtid
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_responseOtid", {
                 get: $util.oneOfGetter($oneOfFields = ["responseOtid"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _responseTimestampMsString.
-             * @member {"responseTimestampMsString"|undefined} _responseTimestampMsString
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_responseTimestampMsString", {
                 get: $util.oneOfGetter($oneOfFields = ["responseTimestampMsString"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _isSelectedResponsePrimary.
-             * @member {"isSelectedResponsePrimary"|undefined} _isSelectedResponsePrimary
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_isSelectedResponsePrimary", {
                 get: $util.oneOfGetter($oneOfFields = ["isSelectedResponsePrimary"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _messageIdToEdit.
-             * @member {"messageIdToEdit"|undefined} _messageIdToEdit
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_messageIdToEdit", {
                 get: $util.oneOfGetter($oneOfFields = ["messageIdToEdit"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _analyticsData.
-             * @member {"analyticsData"|undefined} _analyticsData
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_analyticsData", {
                 get: $util.oneOfGetter($oneOfFields = ["analyticsData"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideSurveyMetadata _metaAiAnalyticsData.
-             * @member {"metaAiAnalyticsData"|undefined} _metaAiAnalyticsData
-             * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideSurveyMetadata.prototype, "_metaAiAnalyticsData", {
                 get: $util.oneOfGetter($oneOfFields = ["metaAiAnalyticsData"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -9539,34 +9152,19 @@ $root.AICommon = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * SideBySideSurveyAnalyticsData _tessaEvent.
-                 * @member {"tessaEvent"|undefined} _tessaEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SideBySideSurveyAnalyticsData.prototype, "_tessaEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["tessaEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SideBySideSurveyAnalyticsData _tessaSessionFbid.
-                 * @member {"tessaSessionFbid"|undefined} _tessaSessionFbid
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SideBySideSurveyAnalyticsData.prototype, "_tessaSessionFbid", {
                     get: $util.oneOfGetter($oneOfFields = ["tessaSessionFbid"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SideBySideSurveyAnalyticsData _simonSessionFbid.
-                 * @member {"simonSessionFbid"|undefined} _simonSessionFbid
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SideBySideSurveyAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SideBySideSurveyAnalyticsData.prototype, "_simonSessionFbid", {
                     get: $util.oneOfGetter($oneOfFields = ["simonSessionFbid"]),
                     set: $util.oneOfSetter($oneOfFields)
@@ -9892,100 +9490,55 @@ $root.AICommon = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _surveyId.
-                 * @member {"surveyId"|undefined} _surveyId
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_surveyId", {
                     get: $util.oneOfGetter($oneOfFields = ["surveyId"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _primaryResponseId.
-                 * @member {"primaryResponseId"|undefined} _primaryResponseId
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_primaryResponseId", {
                     get: $util.oneOfGetter($oneOfFields = ["primaryResponseId"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _testArmName.
-                 * @member {"testArmName"|undefined} _testArmName
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_testArmName", {
                     get: $util.oneOfGetter($oneOfFields = ["testArmName"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _timestampMsString.
-                 * @member {"timestampMsString"|undefined} _timestampMsString
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_timestampMsString", {
                     get: $util.oneOfGetter($oneOfFields = ["timestampMsString"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _ctaImpressionEvent.
-                 * @member {"ctaImpressionEvent"|undefined} _ctaImpressionEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_ctaImpressionEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["ctaImpressionEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _ctaClickEvent.
-                 * @member {"ctaClickEvent"|undefined} _ctaClickEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_ctaClickEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["ctaClickEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _cardImpressionEvent.
-                 * @member {"cardImpressionEvent"|undefined} _cardImpressionEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_cardImpressionEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["cardImpressionEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _responseEvent.
-                 * @member {"responseEvent"|undefined} _responseEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_responseEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["responseEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * SidebySideSurveyMetaAiAnalyticsData _abandonEvent.
-                 * @member {"abandonEvent"|undefined} _abandonEvent
-                 * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(SidebySideSurveyMetaAiAnalyticsData.prototype, "_abandonEvent", {
                     get: $util.oneOfGetter($oneOfFields = ["abandonEvent"]),
                     set: $util.oneOfSetter($oneOfFields)
@@ -10374,12 +9927,7 @@ $root.AICommon = (function() {
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
 
-                    /**
-                     * SideBySideSurveyAbandonEventData _abandonDwellTimeMsString.
-                     * @member {"abandonDwellTimeMsString"|undefined} _abandonDwellTimeMsString
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyAbandonEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyAbandonEventData.prototype, "_abandonDwellTimeMsString", {
                         get: $util.oneOfGetter($oneOfFields = ["abandonDwellTimeMsString"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -10606,23 +10154,13 @@ $root.AICommon = (function() {
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
 
-                    /**
-                     * SideBySideSurveyCTAClickEventData _isSurveyExpired.
-                     * @member {"isSurveyExpired"|undefined} _isSurveyExpired
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyCTAClickEventData.prototype, "_isSurveyExpired", {
                         get: $util.oneOfGetter($oneOfFields = ["isSurveyExpired"]),
                         set: $util.oneOfSetter($oneOfFields)
                     });
 
-                    /**
-                     * SideBySideSurveyCTAClickEventData _clickDwellTimeMsString.
-                     * @member {"clickDwellTimeMsString"|undefined} _clickDwellTimeMsString
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAClickEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyCTAClickEventData.prototype, "_clickDwellTimeMsString", {
                         get: $util.oneOfGetter($oneOfFields = ["clickDwellTimeMsString"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -10858,12 +10396,7 @@ $root.AICommon = (function() {
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
 
-                    /**
-                     * SideBySideSurveyCTAImpressionEventData _isSurveyExpired.
-                     * @member {"isSurveyExpired"|undefined} _isSurveyExpired
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyCTAImpressionEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyCTAImpressionEventData.prototype, "_isSurveyExpired", {
                         get: $util.oneOfGetter($oneOfFields = ["isSurveyExpired"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -11267,23 +10800,13 @@ $root.AICommon = (function() {
                     // OneOf field names bound to virtual getters and setters
                     var $oneOfFields;
 
-                    /**
-                     * SideBySideSurveyResponseEventData _responseDwellTimeMsString.
-                     * @member {"responseDwellTimeMsString"|undefined} _responseDwellTimeMsString
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyResponseEventData.prototype, "_responseDwellTimeMsString", {
                         get: $util.oneOfGetter($oneOfFields = ["responseDwellTimeMsString"]),
                         set: $util.oneOfSetter($oneOfFields)
                     });
 
-                    /**
-                     * SideBySideSurveyResponseEventData _selectedResponseId.
-                     * @member {"selectedResponseId"|undefined} _selectedResponseId
-                     * @memberof AICommon.BotFeedbackMessage.SideBySideSurveyMetadata.SidebySideSurveyMetaAiAnalyticsData.SideBySideSurveyResponseEventData
-                     * @instance
-                     */
+                    // Virtual OneOf for proto3 optional field
                     Object.defineProperty(SideBySideSurveyResponseEventData.prototype, "_selectedResponseId", {
                         get: $util.oneOfGetter($oneOfFields = ["selectedResponseId"]),
                         set: $util.oneOfSetter($oneOfFields)
@@ -11528,12 +11051,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotGroupParticipantMetadata _botFbid.
-         * @member {"botFbid"|undefined} _botFbid
-         * @memberof AICommon.BotGroupParticipantMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotGroupParticipantMetadata.prototype, "_botFbid", {
             get: $util.oneOfGetter($oneOfFields = ["botFbid"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -11714,6 +11232,257 @@ $root.AICommon = (function() {
         };
 
         return BotGroupParticipantMetadata;
+    })();
+
+    AICommon.BotRenderingConfigMetadata = (function() {
+
+        /**
+         * Properties of a BotRenderingConfigMetadata.
+         * @memberof AICommon
+         * @interface IBotRenderingConfigMetadata
+         * @property {string|null} [bloksVersioningId] BotRenderingConfigMetadata bloksVersioningId
+         * @property {number|null} [pixelDensity] BotRenderingConfigMetadata pixelDensity
+         */
+
+        /**
+         * Constructs a new BotRenderingConfigMetadata.
+         * @memberof AICommon
+         * @classdesc Represents a BotRenderingConfigMetadata.
+         * @implements IBotRenderingConfigMetadata
+         * @constructor
+         * @param {AICommon.IBotRenderingConfigMetadata=} [properties] Properties to set
+         */
+        function BotRenderingConfigMetadata(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BotRenderingConfigMetadata bloksVersioningId.
+         * @member {string|null|undefined} bloksVersioningId
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         */
+        BotRenderingConfigMetadata.prototype.bloksVersioningId = null;
+
+        /**
+         * BotRenderingConfigMetadata pixelDensity.
+         * @member {number|null|undefined} pixelDensity
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         */
+        BotRenderingConfigMetadata.prototype.pixelDensity = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(BotRenderingConfigMetadata.prototype, "_bloksVersioningId", {
+            get: $util.oneOfGetter($oneOfFields = ["bloksVersioningId"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(BotRenderingConfigMetadata.prototype, "_pixelDensity", {
+            get: $util.oneOfGetter($oneOfFields = ["pixelDensity"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        /**
+         * Creates a new BotRenderingConfigMetadata instance using the specified properties.
+         * @function create
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata=} [properties] Properties to set
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata instance
+         */
+        BotRenderingConfigMetadata.create = function create(properties) {
+            return new BotRenderingConfigMetadata(properties);
+        };
+
+        /**
+         * Encodes the specified BotRenderingConfigMetadata message. Does not implicitly {@link AICommon.BotRenderingConfigMetadata.verify|verify} messages.
+         * @function encode
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata} message BotRenderingConfigMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotRenderingConfigMetadata.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.bloksVersioningId != null && Object.hasOwnProperty.call(message, "bloksVersioningId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.bloksVersioningId);
+            if (message.pixelDensity != null && Object.hasOwnProperty.call(message, "pixelDensity"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.pixelDensity);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BotRenderingConfigMetadata message, length delimited. Does not implicitly {@link AICommon.BotRenderingConfigMetadata.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.IBotRenderingConfigMetadata} message BotRenderingConfigMetadata message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BotRenderingConfigMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BotRenderingConfigMetadata message from the specified reader or buffer.
+         * @function decode
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotRenderingConfigMetadata.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.AICommon.BotRenderingConfigMetadata();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.bloksVersioningId = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.pixelDensity = reader.double();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BotRenderingConfigMetadata message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BotRenderingConfigMetadata.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BotRenderingConfigMetadata message.
+         * @function verify
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BotRenderingConfigMetadata.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            var properties = {};
+            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId")) {
+                properties._bloksVersioningId = 1;
+                if (!$util.isString(message.bloksVersioningId))
+                    return "bloksVersioningId: string expected";
+            }
+            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity")) {
+                properties._pixelDensity = 1;
+                if (typeof message.pixelDensity !== "number")
+                    return "pixelDensity: number expected";
+            }
+            return null;
+        };
+
+        /**
+         * Creates a BotRenderingConfigMetadata message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {AICommon.BotRenderingConfigMetadata} BotRenderingConfigMetadata
+         */
+        BotRenderingConfigMetadata.fromObject = function fromObject(object) {
+            if (object instanceof $root.AICommon.BotRenderingConfigMetadata)
+                return object;
+            var message = new $root.AICommon.BotRenderingConfigMetadata();
+            if (object.bloksVersioningId != null)
+                message.bloksVersioningId = String(object.bloksVersioningId);
+            if (object.pixelDensity != null)
+                message.pixelDensity = Number(object.pixelDensity);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BotRenderingConfigMetadata message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {AICommon.BotRenderingConfigMetadata} message BotRenderingConfigMetadata
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BotRenderingConfigMetadata.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (message.bloksVersioningId != null && message.hasOwnProperty("bloksVersioningId")) {
+                object.bloksVersioningId = message.bloksVersioningId;
+                if (options.oneofs)
+                    object._bloksVersioningId = "bloksVersioningId";
+            }
+            if (message.pixelDensity != null && message.hasOwnProperty("pixelDensity")) {
+                object.pixelDensity = options.json && !isFinite(message.pixelDensity) ? String(message.pixelDensity) : message.pixelDensity;
+                if (options.oneofs)
+                    object._pixelDensity = "pixelDensity";
+            }
+            return object;
+        };
+
+        /**
+         * Converts this BotRenderingConfigMetadata to JSON.
+         * @function toJSON
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BotRenderingConfigMetadata.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for BotRenderingConfigMetadata
+         * @function getTypeUrl
+         * @memberof AICommon.BotRenderingConfigMetadata
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        BotRenderingConfigMetadata.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/AICommon.BotRenderingConfigMetadata";
+        };
+
+        return BotRenderingConfigMetadata;
     })();
 
     AICommon.BotGroupMetadata = (function() {
@@ -11983,6 +11752,7 @@ $root.AICommon = (function() {
          * @property {AICommon.ISessionTransparencyMetadata|null} [sessionTransparencyMetadata] BotMetadata sessionTransparencyMetadata
          * @property {AICommon.IBotDocumentMessageMetadata|null} [botDocumentMessageMetadata] BotMetadata botDocumentMessageMetadata
          * @property {AICommon.IBotGroupMetadata|null} [botGroupMetadata] BotMetadata botGroupMetadata
+         * @property {AICommon.IBotRenderingConfigMetadata|null} [botRenderingConfigMetadata] BotMetadata botRenderingConfigMetadata
          * @property {Uint8Array|null} [internalMetadata] BotMetadata internalMetadata
          */
 
@@ -12282,6 +12052,14 @@ $root.AICommon = (function() {
         BotMetadata.prototype.botGroupMetadata = null;
 
         /**
+         * BotMetadata botRenderingConfigMetadata.
+         * @member {AICommon.IBotRenderingConfigMetadata|null|undefined} botRenderingConfigMetadata
+         * @memberof AICommon.BotMetadata
+         * @instance
+         */
+        BotMetadata.prototype.botRenderingConfigMetadata = null;
+
+        /**
          * BotMetadata internalMetadata.
          * @member {Uint8Array|null|undefined} internalMetadata
          * @memberof AICommon.BotMetadata
@@ -12292,397 +12070,223 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMetadata _avatarMetadata.
-         * @member {"avatarMetadata"|undefined} _avatarMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_avatarMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["avatarMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _personaId.
-         * @member {"personaId"|undefined} _personaId
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_personaId", {
             get: $util.oneOfGetter($oneOfFields = ["personaId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _pluginMetadata.
-         * @member {"pluginMetadata"|undefined} _pluginMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_pluginMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["pluginMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _suggestedPromptMetadata.
-         * @member {"suggestedPromptMetadata"|undefined} _suggestedPromptMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_suggestedPromptMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["suggestedPromptMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _invokerJid.
-         * @member {"invokerJid"|undefined} _invokerJid
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_invokerJid", {
             get: $util.oneOfGetter($oneOfFields = ["invokerJid"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _sessionMetadata.
-         * @member {"sessionMetadata"|undefined} _sessionMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_sessionMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["sessionMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _memuMetadata.
-         * @member {"memuMetadata"|undefined} _memuMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_memuMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["memuMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _timezone.
-         * @member {"timezone"|undefined} _timezone
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_timezone", {
             get: $util.oneOfGetter($oneOfFields = ["timezone"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _reminderMetadata.
-         * @member {"reminderMetadata"|undefined} _reminderMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_reminderMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["reminderMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _modelMetadata.
-         * @member {"modelMetadata"|undefined} _modelMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_modelMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["modelMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _messageDisclaimerText.
-         * @member {"messageDisclaimerText"|undefined} _messageDisclaimerText
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_messageDisclaimerText", {
             get: $util.oneOfGetter($oneOfFields = ["messageDisclaimerText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _progressIndicatorMetadata.
-         * @member {"progressIndicatorMetadata"|undefined} _progressIndicatorMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_progressIndicatorMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["progressIndicatorMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _capabilityMetadata.
-         * @member {"capabilityMetadata"|undefined} _capabilityMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_capabilityMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["capabilityMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _imagineMetadata.
-         * @member {"imagineMetadata"|undefined} _imagineMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_imagineMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["imagineMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _memoryMetadata.
-         * @member {"memoryMetadata"|undefined} _memoryMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_memoryMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["memoryMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _renderingMetadata.
-         * @member {"renderingMetadata"|undefined} _renderingMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_renderingMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["renderingMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botMetricsMetadata.
-         * @member {"botMetricsMetadata"|undefined} _botMetricsMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botMetricsMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botMetricsMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botLinkedAccountsMetadata.
-         * @member {"botLinkedAccountsMetadata"|undefined} _botLinkedAccountsMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botLinkedAccountsMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botLinkedAccountsMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _richResponseSourcesMetadata.
-         * @member {"richResponseSourcesMetadata"|undefined} _richResponseSourcesMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_richResponseSourcesMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["richResponseSourcesMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _aiConversationContext.
-         * @member {"aiConversationContext"|undefined} _aiConversationContext
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_aiConversationContext", {
             get: $util.oneOfGetter($oneOfFields = ["aiConversationContext"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botPromotionMessageMetadata.
-         * @member {"botPromotionMessageMetadata"|undefined} _botPromotionMessageMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botPromotionMessageMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botPromotionMessageMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botModeSelectionMetadata.
-         * @member {"botModeSelectionMetadata"|undefined} _botModeSelectionMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botModeSelectionMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botModeSelectionMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botQuotaMetadata.
-         * @member {"botQuotaMetadata"|undefined} _botQuotaMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botQuotaMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botQuotaMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botAgeCollectionMetadata.
-         * @member {"botAgeCollectionMetadata"|undefined} _botAgeCollectionMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botAgeCollectionMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botAgeCollectionMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _conversationStarterPromptId.
-         * @member {"conversationStarterPromptId"|undefined} _conversationStarterPromptId
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_conversationStarterPromptId", {
             get: $util.oneOfGetter($oneOfFields = ["conversationStarterPromptId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botResponseId.
-         * @member {"botResponseId"|undefined} _botResponseId
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botResponseId", {
             get: $util.oneOfGetter($oneOfFields = ["botResponseId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _verificationMetadata.
-         * @member {"verificationMetadata"|undefined} _verificationMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_verificationMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["verificationMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _unifiedResponseMutation.
-         * @member {"unifiedResponseMutation"|undefined} _unifiedResponseMutation
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_unifiedResponseMutation", {
             get: $util.oneOfGetter($oneOfFields = ["unifiedResponseMutation"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botMessageOriginMetadata.
-         * @member {"botMessageOriginMetadata"|undefined} _botMessageOriginMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botMessageOriginMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botMessageOriginMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _inThreadSurveyMetadata.
-         * @member {"inThreadSurveyMetadata"|undefined} _inThreadSurveyMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_inThreadSurveyMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["inThreadSurveyMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botThreadInfo.
-         * @member {"botThreadInfo"|undefined} _botThreadInfo
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botThreadInfo", {
             get: $util.oneOfGetter($oneOfFields = ["botThreadInfo"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _regenerateMetadata.
-         * @member {"regenerateMetadata"|undefined} _regenerateMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_regenerateMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["regenerateMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _sessionTransparencyMetadata.
-         * @member {"sessionTransparencyMetadata"|undefined} _sessionTransparencyMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_sessionTransparencyMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["sessionTransparencyMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botDocumentMessageMetadata.
-         * @member {"botDocumentMessageMetadata"|undefined} _botDocumentMessageMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botDocumentMessageMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botDocumentMessageMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _botGroupMetadata.
-         * @member {"botGroupMetadata"|undefined} _botGroupMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_botGroupMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["botGroupMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetadata _internalMetadata.
-         * @member {"internalMetadata"|undefined} _internalMetadata
-         * @memberof AICommon.BotMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(BotMetadata.prototype, "_botRenderingConfigMetadata", {
+            get: $util.oneOfGetter($oneOfFields = ["botRenderingConfigMetadata"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetadata.prototype, "_internalMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["internalMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -12782,6 +12386,8 @@ $root.AICommon = (function() {
                 $root.AICommon.BotDocumentMessageMetadata.encode(message.botDocumentMessageMetadata, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
             if (message.botGroupMetadata != null && Object.hasOwnProperty.call(message, "botGroupMetadata"))
                 $root.AICommon.BotGroupMetadata.encode(message.botGroupMetadata, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
+            if (message.botRenderingConfigMetadata != null && Object.hasOwnProperty.call(message, "botRenderingConfigMetadata"))
+                $root.AICommon.BotRenderingConfigMetadata.encode(message.botRenderingConfigMetadata, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
             if (message.internalMetadata != null && Object.hasOwnProperty.call(message, "internalMetadata"))
                 writer.uint32(/* id 999, wireType 2 =*/7994).bytes(message.internalMetadata);
             return writer;
@@ -12958,6 +12564,10 @@ $root.AICommon = (function() {
                     }
                 case 35: {
                         message.botGroupMetadata = $root.AICommon.BotGroupMetadata.decode(reader, reader.uint32());
+                        break;
+                    }
+                case 36: {
+                        message.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.decode(reader, reader.uint32());
                         break;
                     }
                 case 999: {
@@ -13259,6 +12869,14 @@ $root.AICommon = (function() {
                         return "botGroupMetadata." + error;
                 }
             }
+            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata")) {
+                properties._botRenderingConfigMetadata = 1;
+                {
+                    var error = $root.AICommon.BotRenderingConfigMetadata.verify(message.botRenderingConfigMetadata);
+                    if (error)
+                        return "botRenderingConfigMetadata." + error;
+                }
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata")) {
                 properties._internalMetadata = 1;
                 if (!(message.internalMetadata && typeof message.internalMetadata.length === "number" || $util.isString(message.internalMetadata)))
@@ -13435,6 +13053,11 @@ $root.AICommon = (function() {
                 if (typeof object.botGroupMetadata !== "object")
                     throw TypeError(".AICommon.BotMetadata.botGroupMetadata: object expected");
                 message.botGroupMetadata = $root.AICommon.BotGroupMetadata.fromObject(object.botGroupMetadata);
+            }
+            if (object.botRenderingConfigMetadata != null) {
+                if (typeof object.botRenderingConfigMetadata !== "object")
+                    throw TypeError(".AICommon.BotMetadata.botRenderingConfigMetadata: object expected");
+                message.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.fromObject(object.botRenderingConfigMetadata);
             }
             if (object.internalMetadata != null)
                 if (typeof object.internalMetadata === "string")
@@ -13632,6 +13255,11 @@ $root.AICommon = (function() {
                 if (options.oneofs)
                     object._botGroupMetadata = "botGroupMetadata";
             }
+            if (message.botRenderingConfigMetadata != null && message.hasOwnProperty("botRenderingConfigMetadata")) {
+                object.botRenderingConfigMetadata = $root.AICommon.BotRenderingConfigMetadata.toObject(message.botRenderingConfigMetadata, options);
+                if (options.oneofs)
+                    object._botRenderingConfigMetadata = "botRenderingConfigMetadata";
+            }
             if (message.internalMetadata != null && message.hasOwnProperty("internalMetadata")) {
                 object.internalMetadata = options.bytes === String ? $util.base64.encode(message.internalMetadata, 0, message.internalMetadata.length) : options.bytes === Array ? Array.prototype.slice.call(message.internalMetadata) : message.internalMetadata;
                 if (options.oneofs)
@@ -13713,23 +13341,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * AIThreadInfo _serverInfo.
-         * @member {"serverInfo"|undefined} _serverInfo
-         * @memberof AICommon.AIThreadInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIThreadInfo.prototype, "_serverInfo", {
             get: $util.oneOfGetter($oneOfFields = ["serverInfo"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * AIThreadInfo _clientInfo.
-         * @member {"clientInfo"|undefined} _clientInfo
-         * @memberof AICommon.AIThreadInfo
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(AIThreadInfo.prototype, "_clientInfo", {
             get: $util.oneOfGetter($oneOfFields = ["clientInfo"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -13974,12 +13592,7 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIThreadClientInfo _type.
-             * @member {"type"|undefined} _type
-             * @memberof AICommon.AIThreadInfo.AIThreadClientInfo
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIThreadClientInfo.prototype, "_type", {
                 get: $util.oneOfGetter($oneOfFields = ["type"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -14237,12 +13850,7 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AIThreadServerInfo _title.
-             * @member {"title"|undefined} _title
-             * @memberof AICommon.AIThreadInfo.AIThreadServerInfo
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AIThreadServerInfo.prototype, "_title", {
                 get: $util.oneOfGetter($oneOfFields = ["title"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -14473,12 +14081,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotUnifiedResponseMutation _sbsMetadata.
-         * @member {"sbsMetadata"|undefined} _sbsMetadata
-         * @memberof AICommon.BotUnifiedResponseMutation
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotUnifiedResponseMutation.prototype, "_sbsMetadata", {
             get: $util.oneOfGetter($oneOfFields = ["sbsMetadata"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -14752,34 +14355,19 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * MediaDetailsMetadata _id.
-             * @member {"id"|undefined} _id
-             * @memberof AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(MediaDetailsMetadata.prototype, "_id", {
                 get: $util.oneOfGetter($oneOfFields = ["id"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * MediaDetailsMetadata _highResMedia.
-             * @member {"highResMedia"|undefined} _highResMedia
-             * @memberof AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(MediaDetailsMetadata.prototype, "_highResMedia", {
                 get: $util.oneOfGetter($oneOfFields = ["highResMedia"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * MediaDetailsMetadata _previewMedia.
-             * @member {"previewMedia"|undefined} _previewMedia
-             * @memberof AICommon.BotUnifiedResponseMutation.MediaDetailsMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(MediaDetailsMetadata.prototype, "_previewMedia", {
                 get: $util.oneOfGetter($oneOfFields = ["previewMedia"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -15054,23 +14642,13 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * SideBySideMetadata _primaryResponseId.
-             * @member {"primaryResponseId"|undefined} _primaryResponseId
-             * @memberof AICommon.BotUnifiedResponseMutation.SideBySideMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideMetadata.prototype, "_primaryResponseId", {
                 get: $util.oneOfGetter($oneOfFields = ["primaryResponseId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * SideBySideMetadata _surveyCtaHasRendered.
-             * @member {"surveyCtaHasRendered"|undefined} _surveyCtaHasRendered
-             * @memberof AICommon.BotUnifiedResponseMutation.SideBySideMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(SideBySideMetadata.prototype, "_surveyCtaHasRendered", {
                 get: $util.oneOfGetter($oneOfFields = ["surveyCtaHasRendered"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -15309,12 +14887,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMessageOrigin _type.
-         * @member {"type"|undefined} _type
-         * @memberof AICommon.BotMessageOrigin
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMessageOrigin.prototype, "_type", {
             get: $util.oneOfGetter($oneOfFields = ["type"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -15939,177 +15512,97 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * InThreadSurveyMetadata _tessaSessionId.
-         * @member {"tessaSessionId"|undefined} _tessaSessionId
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_tessaSessionId", {
             get: $util.oneOfGetter($oneOfFields = ["tessaSessionId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _simonSessionId.
-         * @member {"simonSessionId"|undefined} _simonSessionId
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_simonSessionId", {
             get: $util.oneOfGetter($oneOfFields = ["simonSessionId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _simonSurveyId.
-         * @member {"simonSurveyId"|undefined} _simonSurveyId
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_simonSurveyId", {
             get: $util.oneOfGetter($oneOfFields = ["simonSurveyId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _tessaRootId.
-         * @member {"tessaRootId"|undefined} _tessaRootId
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_tessaRootId", {
             get: $util.oneOfGetter($oneOfFields = ["tessaRootId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _requestId.
-         * @member {"requestId"|undefined} _requestId
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_requestId", {
             get: $util.oneOfGetter($oneOfFields = ["requestId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _tessaEvent.
-         * @member {"tessaEvent"|undefined} _tessaEvent
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_tessaEvent", {
             get: $util.oneOfGetter($oneOfFields = ["tessaEvent"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _invitationHeaderText.
-         * @member {"invitationHeaderText"|undefined} _invitationHeaderText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_invitationHeaderText", {
             get: $util.oneOfGetter($oneOfFields = ["invitationHeaderText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _invitationBodyText.
-         * @member {"invitationBodyText"|undefined} _invitationBodyText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_invitationBodyText", {
             get: $util.oneOfGetter($oneOfFields = ["invitationBodyText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _invitationCtaText.
-         * @member {"invitationCtaText"|undefined} _invitationCtaText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_invitationCtaText", {
             get: $util.oneOfGetter($oneOfFields = ["invitationCtaText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _invitationCtaUrl.
-         * @member {"invitationCtaUrl"|undefined} _invitationCtaUrl
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_invitationCtaUrl", {
             get: $util.oneOfGetter($oneOfFields = ["invitationCtaUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _surveyTitle.
-         * @member {"surveyTitle"|undefined} _surveyTitle
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_surveyTitle", {
             get: $util.oneOfGetter($oneOfFields = ["surveyTitle"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _surveyContinueButtonText.
-         * @member {"surveyContinueButtonText"|undefined} _surveyContinueButtonText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_surveyContinueButtonText", {
             get: $util.oneOfGetter($oneOfFields = ["surveyContinueButtonText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _surveySubmitButtonText.
-         * @member {"surveySubmitButtonText"|undefined} _surveySubmitButtonText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_surveySubmitButtonText", {
             get: $util.oneOfGetter($oneOfFields = ["surveySubmitButtonText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _privacyStatementFull.
-         * @member {"privacyStatementFull"|undefined} _privacyStatementFull
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_privacyStatementFull", {
             get: $util.oneOfGetter($oneOfFields = ["privacyStatementFull"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _feedbackToastText.
-         * @member {"feedbackToastText"|undefined} _feedbackToastText
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_feedbackToastText", {
             get: $util.oneOfGetter($oneOfFields = ["feedbackToastText"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * InThreadSurveyMetadata _startQuestionIndex.
-         * @member {"startQuestionIndex"|undefined} _startQuestionIndex
-         * @memberof AICommon.InThreadSurveyMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(InThreadSurveyMetadata.prototype, "_startQuestionIndex", {
             get: $util.oneOfGetter($oneOfFields = ["startQuestionIndex"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -16682,34 +16175,19 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * InThreadSurveyOption _stringValue.
-             * @member {"stringValue"|undefined} _stringValue
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyOption.prototype, "_stringValue", {
                 get: $util.oneOfGetter($oneOfFields = ["stringValue"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * InThreadSurveyOption _numericValue.
-             * @member {"numericValue"|undefined} _numericValue
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyOption.prototype, "_numericValue", {
                 get: $util.oneOfGetter($oneOfFields = ["numericValue"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * InThreadSurveyOption _textTranslated.
-             * @member {"textTranslated"|undefined} _textTranslated
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyOption
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyOption.prototype, "_textTranslated", {
                 get: $util.oneOfGetter($oneOfFields = ["textTranslated"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -16972,23 +16450,13 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * InThreadSurveyPrivacyStatementPart _text.
-             * @member {"text"|undefined} _text
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyPrivacyStatementPart.prototype, "_text", {
                 get: $util.oneOfGetter($oneOfFields = ["text"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * InThreadSurveyPrivacyStatementPart _url.
-             * @member {"url"|undefined} _url
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyPrivacyStatementPart
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyPrivacyStatementPart.prototype, "_url", {
                 get: $util.oneOfGetter($oneOfFields = ["url"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -17243,23 +16711,13 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * InThreadSurveyQuestion _questionText.
-             * @member {"questionText"|undefined} _questionText
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyQuestion.prototype, "_questionText", {
                 get: $util.oneOfGetter($oneOfFields = ["questionText"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * InThreadSurveyQuestion _questionId.
-             * @member {"questionId"|undefined} _questionId
-             * @memberof AICommon.InThreadSurveyMetadata.InThreadSurveyQuestion
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(InThreadSurveyQuestion.prototype, "_questionId", {
                 get: $util.oneOfGetter($oneOfFields = ["questionId"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -17810,78 +17268,43 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * BotSourceItem _provider.
-             * @member {"provider"|undefined} _provider
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_provider", {
                 get: $util.oneOfGetter($oneOfFields = ["provider"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _thumbnailCdnUrl.
-             * @member {"thumbnailCdnUrl"|undefined} _thumbnailCdnUrl
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_thumbnailCdnUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["thumbnailCdnUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _sourceProviderUrl.
-             * @member {"sourceProviderUrl"|undefined} _sourceProviderUrl
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_sourceProviderUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["sourceProviderUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _sourceQuery.
-             * @member {"sourceQuery"|undefined} _sourceQuery
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_sourceQuery", {
                 get: $util.oneOfGetter($oneOfFields = ["sourceQuery"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _faviconCdnUrl.
-             * @member {"faviconCdnUrl"|undefined} _faviconCdnUrl
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_faviconCdnUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["faviconCdnUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _citationNumber.
-             * @member {"citationNumber"|undefined} _citationNumber
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_citationNumber", {
                 get: $util.oneOfGetter($oneOfFields = ["citationNumber"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotSourceItem _sourceTitle.
-             * @member {"sourceTitle"|undefined} _sourceTitle
-             * @memberof AICommon.BotSourcesMetadata.BotSourceItem
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotSourceItem.prototype, "_sourceTitle", {
                 get: $util.oneOfGetter($oneOfFields = ["sourceTitle"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -18282,34 +17705,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotAgeCollectionMetadata _ageCollectionEligible.
-         * @member {"ageCollectionEligible"|undefined} _ageCollectionEligible
-         * @memberof AICommon.BotAgeCollectionMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAgeCollectionMetadata.prototype, "_ageCollectionEligible", {
             get: $util.oneOfGetter($oneOfFields = ["ageCollectionEligible"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAgeCollectionMetadata _shouldTriggerAgeCollectionOnClient.
-         * @member {"shouldTriggerAgeCollectionOnClient"|undefined} _shouldTriggerAgeCollectionOnClient
-         * @memberof AICommon.BotAgeCollectionMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAgeCollectionMetadata.prototype, "_shouldTriggerAgeCollectionOnClient", {
             get: $util.oneOfGetter($oneOfFields = ["shouldTriggerAgeCollectionOnClient"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAgeCollectionMetadata _ageCollectionType.
-         * @member {"ageCollectionType"|undefined} _ageCollectionType
-         * @memberof AICommon.BotAgeCollectionMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAgeCollectionMetadata.prototype, "_ageCollectionType", {
             get: $util.oneOfGetter($oneOfFields = ["ageCollectionType"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -18568,6 +17976,7 @@ $root.AICommon = (function() {
          * @memberof AICommon
          * @interface IBotImagineMetadata
          * @property {AICommon.BotImagineMetadata.ImagineType|null} [imagineType] BotImagineMetadata imagineType
+         * @property {string|null} [shortPrompt] BotImagineMetadata shortPrompt
          */
 
         /**
@@ -18593,17 +18002,26 @@ $root.AICommon = (function() {
          */
         BotImagineMetadata.prototype.imagineType = null;
 
-        // OneOf field names bound to virtual getters and setters
-        var $oneOfFields;
-
         /**
-         * BotImagineMetadata _imagineType.
-         * @member {"imagineType"|undefined} _imagineType
+         * BotImagineMetadata shortPrompt.
+         * @member {string|null|undefined} shortPrompt
          * @memberof AICommon.BotImagineMetadata
          * @instance
          */
+        BotImagineMetadata.prototype.shortPrompt = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotImagineMetadata.prototype, "_imagineType", {
             get: $util.oneOfGetter($oneOfFields = ["imagineType"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(BotImagineMetadata.prototype, "_shortPrompt", {
+            get: $util.oneOfGetter($oneOfFields = ["shortPrompt"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -18633,6 +18051,8 @@ $root.AICommon = (function() {
                 writer = $Writer.create();
             if (message.imagineType != null && Object.hasOwnProperty.call(message, "imagineType"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.imagineType);
+            if (message.shortPrompt != null && Object.hasOwnProperty.call(message, "shortPrompt"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.shortPrompt);
             return writer;
         };
 
@@ -18671,6 +18091,10 @@ $root.AICommon = (function() {
                 switch (tag >>> 3) {
                 case 1: {
                         message.imagineType = reader.int32();
+                        break;
+                    }
+                case 2: {
+                        message.shortPrompt = reader.string();
                         break;
                     }
                 default:
@@ -18722,6 +18146,11 @@ $root.AICommon = (function() {
                     break;
                 }
             }
+            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt")) {
+                properties._shortPrompt = 1;
+                if (!$util.isString(message.shortPrompt))
+                    return "shortPrompt: string expected";
+            }
             return null;
         };
 
@@ -18765,6 +18194,8 @@ $root.AICommon = (function() {
                 message.imagineType = 4;
                 break;
             }
+            if (object.shortPrompt != null)
+                message.shortPrompt = String(object.shortPrompt);
             return message;
         };
 
@@ -18785,6 +18216,11 @@ $root.AICommon = (function() {
                 object.imagineType = options.enums === String ? $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] === undefined ? message.imagineType : $root.AICommon.BotImagineMetadata.ImagineType[message.imagineType] : message.imagineType;
                 if (options.oneofs)
                     object._imagineType = "imagineType";
+            }
+            if (message.shortPrompt != null && message.hasOwnProperty("shortPrompt")) {
+                object.shortPrompt = message.shortPrompt;
+                if (options.oneofs)
+                    object._shortPrompt = "shortPrompt";
             }
             return object;
         };
@@ -19114,34 +18550,19 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * BotFeatureQuotaMetadata _featureType.
-             * @member {"featureType"|undefined} _featureType
-             * @memberof AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotFeatureQuotaMetadata.prototype, "_featureType", {
                 get: $util.oneOfGetter($oneOfFields = ["featureType"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotFeatureQuotaMetadata _remainingQuota.
-             * @member {"remainingQuota"|undefined} _remainingQuota
-             * @memberof AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotFeatureQuotaMetadata.prototype, "_remainingQuota", {
                 get: $util.oneOfGetter($oneOfFields = ["remainingQuota"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotFeatureQuotaMetadata _expirationTimestamp.
-             * @member {"expirationTimestamp"|undefined} _expirationTimestamp
-             * @memberof AICommon.BotQuotaMetadata.BotFeatureQuotaMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotFeatureQuotaMetadata.prototype, "_expirationTimestamp", {
                 get: $util.oneOfGetter($oneOfFields = ["expirationTimestamp"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -19589,11 +19010,11 @@ $root.AICommon = (function() {
                             message.mode[i] = object.mode[i];
                             break;
                         }
-                    case "UNKNOWN_MODE":
+                    case "DEFAULT_MODE":
                     case 0:
                         message.mode[i] = 0;
                         break;
-                    case "REASONING_MODE":
+                    case "THINK_HARD_MODE":
                     case 1:
                         message.mode[i] = 1;
                         break;
@@ -19655,13 +19076,13 @@ $root.AICommon = (function() {
          * BotUserSelectionMode enum.
          * @name AICommon.BotModeSelectionMetadata.BotUserSelectionMode
          * @enum {number}
-         * @property {number} UNKNOWN_MODE=0 UNKNOWN_MODE value
-         * @property {number} REASONING_MODE=1 REASONING_MODE value
+         * @property {number} DEFAULT_MODE=0 DEFAULT_MODE value
+         * @property {number} THINK_HARD_MODE=1 THINK_HARD_MODE value
          */
         BotModeSelectionMetadata.BotUserSelectionMode = (function() {
             var valuesById = {}, values = Object.create(valuesById);
-            values[valuesById[0] = "UNKNOWN_MODE"] = 0;
-            values[valuesById[1] = "REASONING_MODE"] = 1;
+            values[valuesById[0] = "DEFAULT_MODE"] = 0;
+            values[valuesById[1] = "THINK_HARD_MODE"] = 1;
             return values;
         })();
 
@@ -19870,6 +19291,13 @@ $root.AICommon = (function() {
                     case 47:
                     case 48:
                     case 49:
+                    case 50:
+                    case 51:
+                    case 52:
+                    case 53:
+                    case 54:
+                    case 55:
+                    case 56:
                         break;
                     }
             }
@@ -20099,6 +19527,34 @@ $root.AICommon = (function() {
                     case 49:
                         message.capabilities[i] = 49;
                         break;
+                    case "RICH_RESPONSE_UR_ZEITGEIST_CITATIONS":
+                    case 50:
+                        message.capabilities[i] = 50;
+                        break;
+                    case "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL":
+                    case 51:
+                        message.capabilities[i] = 51;
+                        break;
+                    case "AI_IMAGINE_LOADING_INDICATOR":
+                    case 52:
+                        message.capabilities[i] = 52;
+                        break;
+                    case "RICH_RESPONSE_UR_IMAGINE":
+                    case 53:
+                        message.capabilities[i] = 53;
+                        break;
+                    case "AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR":
+                    case 54:
+                        message.capabilities[i] = 54;
+                        break;
+                    case "RICH_RESPONSE_UR_BLOKS_ENABLED":
+                    case 55:
+                        message.capabilities[i] = 55;
+                        break;
+                    case "RICH_RESPONSE_INLINE_LINKS_ENABLED":
+                    case 56:
+                        message.capabilities[i] = 56;
+                        break;
                     }
             }
             return message;
@@ -20207,6 +19663,13 @@ $root.AICommon = (function() {
          * @property {number} AI_RESPONSE_MODEL_BRANDING=47 AI_RESPONSE_MODEL_BRANDING value
          * @property {number} SESSION_TRANSPARENCY_SYSTEM_MESSAGE=48 SESSION_TRANSPARENCY_SYSTEM_MESSAGE value
          * @property {number} RICH_RESPONSE_UR_REASONING=49 RICH_RESPONSE_UR_REASONING value
+         * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CITATIONS=50 RICH_RESPONSE_UR_ZEITGEIST_CITATIONS value
+         * @property {number} RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL=51 RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL value
+         * @property {number} AI_IMAGINE_LOADING_INDICATOR=52 AI_IMAGINE_LOADING_INDICATOR value
+         * @property {number} RICH_RESPONSE_UR_IMAGINE=53 RICH_RESPONSE_UR_IMAGINE value
+         * @property {number} AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR=54 AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR value
+         * @property {number} RICH_RESPONSE_UR_BLOKS_ENABLED=55 RICH_RESPONSE_UR_BLOKS_ENABLED value
+         * @property {number} RICH_RESPONSE_INLINE_LINKS_ENABLED=56 RICH_RESPONSE_INLINE_LINKS_ENABLED value
          */
         BotCapabilityMetadata.BotCapabilityType = (function() {
             var valuesById = {}, values = Object.create(valuesById);
@@ -20260,6 +19723,13 @@ $root.AICommon = (function() {
             values[valuesById[47] = "AI_RESPONSE_MODEL_BRANDING"] = 47;
             values[valuesById[48] = "SESSION_TRANSPARENCY_SYSTEM_MESSAGE"] = 48;
             values[valuesById[49] = "RICH_RESPONSE_UR_REASONING"] = 49;
+            values[valuesById[50] = "RICH_RESPONSE_UR_ZEITGEIST_CITATIONS"] = 50;
+            values[valuesById[51] = "RICH_RESPONSE_UR_ZEITGEIST_CAROUSEL"] = 51;
+            values[valuesById[52] = "AI_IMAGINE_LOADING_INDICATOR"] = 52;
+            values[valuesById[53] = "RICH_RESPONSE_UR_IMAGINE"] = 53;
+            values[valuesById[54] = "AI_IMAGINE_UR_TO_NATIVE_LOADING_INDICATOR"] = 54;
+            values[valuesById[55] = "RICH_RESPONSE_UR_BLOKS_ENABLED"] = 55;
+            values[valuesById[56] = "RICH_RESPONSE_INLINE_LINKS_ENABLED"] = 56;
             return values;
         })();
 
@@ -20274,6 +19744,7 @@ $root.AICommon = (function() {
          * @interface IBotProgressIndicatorMetadata
          * @property {string|null} [progressDescription] BotProgressIndicatorMetadata progressDescription
          * @property {Array.<AICommon.BotProgressIndicatorMetadata.IBotPlanningStepMetadata>|null} [stepsMetadata] BotProgressIndicatorMetadata stepsMetadata
+         * @property {number|Long|null} [estimatedCompletionTime] BotProgressIndicatorMetadata estimatedCompletionTime
          */
 
         /**
@@ -20308,17 +19779,26 @@ $root.AICommon = (function() {
          */
         BotProgressIndicatorMetadata.prototype.stepsMetadata = $util.emptyArray;
 
-        // OneOf field names bound to virtual getters and setters
-        var $oneOfFields;
-
         /**
-         * BotProgressIndicatorMetadata _progressDescription.
-         * @member {"progressDescription"|undefined} _progressDescription
+         * BotProgressIndicatorMetadata estimatedCompletionTime.
+         * @member {number|Long|null|undefined} estimatedCompletionTime
          * @memberof AICommon.BotProgressIndicatorMetadata
          * @instance
          */
+        BotProgressIndicatorMetadata.prototype.estimatedCompletionTime = null;
+
+        // OneOf field names bound to virtual getters and setters
+        var $oneOfFields;
+
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotProgressIndicatorMetadata.prototype, "_progressDescription", {
             get: $util.oneOfGetter($oneOfFields = ["progressDescription"]),
+            set: $util.oneOfSetter($oneOfFields)
+        });
+
+        // Virtual OneOf for proto3 optional field
+        Object.defineProperty(BotProgressIndicatorMetadata.prototype, "_estimatedCompletionTime", {
+            get: $util.oneOfGetter($oneOfFields = ["estimatedCompletionTime"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
@@ -20351,6 +19831,8 @@ $root.AICommon = (function() {
             if (message.stepsMetadata != null && message.stepsMetadata.length)
                 for (var i = 0; i < message.stepsMetadata.length; ++i)
                     $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.encode(message.stepsMetadata[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+            if (message.estimatedCompletionTime != null && Object.hasOwnProperty.call(message, "estimatedCompletionTime"))
+                writer.uint32(/* id 3, wireType 0 =*/24).int64(message.estimatedCompletionTime);
             return writer;
         };
 
@@ -20395,6 +19877,10 @@ $root.AICommon = (function() {
                         if (!(message.stepsMetadata && message.stepsMetadata.length))
                             message.stepsMetadata = [];
                         message.stepsMetadata.push($root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.decode(reader, reader.uint32()));
+                        break;
+                    }
+                case 3: {
+                        message.estimatedCompletionTime = reader.int64();
                         break;
                     }
                 default:
@@ -20447,6 +19933,11 @@ $root.AICommon = (function() {
                         return "stepsMetadata." + error;
                 }
             }
+            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime")) {
+                properties._estimatedCompletionTime = 1;
+                if (!$util.isInteger(message.estimatedCompletionTime) && !(message.estimatedCompletionTime && $util.isInteger(message.estimatedCompletionTime.low) && $util.isInteger(message.estimatedCompletionTime.high)))
+                    return "estimatedCompletionTime: integer|Long expected";
+            }
             return null;
         };
 
@@ -20474,6 +19965,15 @@ $root.AICommon = (function() {
                     message.stepsMetadata[i] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.fromObject(object.stepsMetadata[i]);
                 }
             }
+            if (object.estimatedCompletionTime != null)
+                if ($util.Long)
+                    (message.estimatedCompletionTime = $util.Long.fromValue(object.estimatedCompletionTime)).unsigned = false;
+                else if (typeof object.estimatedCompletionTime === "string")
+                    message.estimatedCompletionTime = parseInt(object.estimatedCompletionTime, 10);
+                else if (typeof object.estimatedCompletionTime === "number")
+                    message.estimatedCompletionTime = object.estimatedCompletionTime;
+                else if (typeof object.estimatedCompletionTime === "object")
+                    message.estimatedCompletionTime = new $util.LongBits(object.estimatedCompletionTime.low >>> 0, object.estimatedCompletionTime.high >>> 0).toNumber();
             return message;
         };
 
@@ -20501,6 +20001,14 @@ $root.AICommon = (function() {
                 object.stepsMetadata = [];
                 for (var j = 0; j < message.stepsMetadata.length; ++j)
                     object.stepsMetadata[j] = $root.AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.toObject(message.stepsMetadata[j], options);
+            }
+            if (message.estimatedCompletionTime != null && message.hasOwnProperty("estimatedCompletionTime")) {
+                if (typeof message.estimatedCompletionTime === "number")
+                    object.estimatedCompletionTime = options.longs === String ? String(message.estimatedCompletionTime) : message.estimatedCompletionTime;
+                else
+                    object.estimatedCompletionTime = options.longs === String ? $util.Long.prototype.toString.call(message.estimatedCompletionTime) : options.longs === Number ? new $util.LongBits(message.estimatedCompletionTime.low >>> 0, message.estimatedCompletionTime.high >>> 0).toNumber() : message.estimatedCompletionTime;
+                if (options.oneofs)
+                    object._estimatedCompletionTime = "estimatedCompletionTime";
             }
             return object;
         };
@@ -20622,56 +20130,31 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * BotPlanningStepMetadata _statusTitle.
-             * @member {"statusTitle"|undefined} _statusTitle
-             * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotPlanningStepMetadata.prototype, "_statusTitle", {
                 get: $util.oneOfGetter($oneOfFields = ["statusTitle"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotPlanningStepMetadata _statusBody.
-             * @member {"statusBody"|undefined} _statusBody
-             * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotPlanningStepMetadata.prototype, "_statusBody", {
                 get: $util.oneOfGetter($oneOfFields = ["statusBody"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotPlanningStepMetadata _status.
-             * @member {"status"|undefined} _status
-             * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotPlanningStepMetadata.prototype, "_status", {
                 get: $util.oneOfGetter($oneOfFields = ["status"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotPlanningStepMetadata _isReasoning.
-             * @member {"isReasoning"|undefined} _isReasoning
-             * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotPlanningStepMetadata.prototype, "_isReasoning", {
                 get: $util.oneOfGetter($oneOfFields = ["isReasoning"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * BotPlanningStepMetadata _isEnhancedSearch.
-             * @member {"isEnhancedSearch"|undefined} _isEnhancedSearch
-             * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(BotPlanningStepMetadata.prototype, "_isEnhancedSearch", {
                 get: $util.oneOfGetter($oneOfFields = ["isEnhancedSearch"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -21084,45 +20567,25 @@ $root.AICommon = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * BotPlanningSearchSourceMetadata _title.
-                 * @member {"title"|undefined} _title
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourceMetadata.prototype, "_title", {
                     get: $util.oneOfGetter($oneOfFields = ["title"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningSearchSourceMetadata _provider.
-                 * @member {"provider"|undefined} _provider
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourceMetadata.prototype, "_provider", {
                     get: $util.oneOfGetter($oneOfFields = ["provider"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningSearchSourceMetadata _sourceUrl.
-                 * @member {"sourceUrl"|undefined} _sourceUrl
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourceMetadata.prototype, "_sourceUrl", {
                     get: $util.oneOfGetter($oneOfFields = ["sourceUrl"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningSearchSourceMetadata _favIconUrl.
-                 * @member {"favIconUrl"|undefined} _favIconUrl
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourceMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourceMetadata.prototype, "_favIconUrl", {
                     get: $util.oneOfGetter($oneOfFields = ["favIconUrl"]),
                     set: $util.oneOfSetter($oneOfFields)
@@ -21441,34 +20904,19 @@ $root.AICommon = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * BotPlanningSearchSourcesMetadata _sourceTitle.
-                 * @member {"sourceTitle"|undefined} _sourceTitle
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_sourceTitle", {
                     get: $util.oneOfGetter($oneOfFields = ["sourceTitle"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningSearchSourcesMetadata _provider.
-                 * @member {"provider"|undefined} _provider
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_provider", {
                     get: $util.oneOfGetter($oneOfFields = ["provider"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningSearchSourcesMetadata _sourceUrl.
-                 * @member {"sourceUrl"|undefined} _sourceUrl
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningSearchSourcesMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningSearchSourcesMetadata.prototype, "_sourceUrl", {
                     get: $util.oneOfGetter($oneOfFields = ["sourceUrl"]),
                     set: $util.oneOfSetter($oneOfFields)
@@ -21788,23 +21236,13 @@ $root.AICommon = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * BotPlanningStepSectionMetadata _sectionTitle.
-                 * @member {"sectionTitle"|undefined} _sectionTitle
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningStepSectionMetadata.prototype, "_sectionTitle", {
                     get: $util.oneOfGetter($oneOfFields = ["sectionTitle"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * BotPlanningStepSectionMetadata _sectionBody.
-                 * @member {"sectionBody"|undefined} _sectionBody
-                 * @memberof AICommon.BotProgressIndicatorMetadata.BotPlanningStepMetadata.BotPlanningStepSectionMetadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(BotPlanningStepSectionMetadata.prototype, "_sectionBody", {
                     get: $util.oneOfGetter($oneOfFields = ["sectionBody"]),
                     set: $util.oneOfSetter($oneOfFields)
@@ -22135,34 +21573,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotModelMetadata _modelType.
-         * @member {"modelType"|undefined} _modelType
-         * @memberof AICommon.BotModelMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotModelMetadata.prototype, "_modelType", {
             get: $util.oneOfGetter($oneOfFields = ["modelType"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotModelMetadata _premiumModelStatus.
-         * @member {"premiumModelStatus"|undefined} _premiumModelStatus
-         * @memberof AICommon.BotModelMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotModelMetadata.prototype, "_premiumModelStatus", {
             get: $util.oneOfGetter($oneOfFields = ["premiumModelStatus"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotModelMetadata _modelNameOverride.
-         * @member {"modelNameOverride"|undefined} _modelNameOverride
-         * @memberof AICommon.BotModelMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotModelMetadata.prototype, "_modelNameOverride", {
             get: $util.oneOfGetter($oneOfFields = ["modelNameOverride"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -22532,56 +21955,31 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotReminderMetadata _requestMessageKey.
-         * @member {"requestMessageKey"|undefined} _requestMessageKey
-         * @memberof AICommon.BotReminderMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotReminderMetadata.prototype, "_requestMessageKey", {
             get: $util.oneOfGetter($oneOfFields = ["requestMessageKey"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotReminderMetadata _action.
-         * @member {"action"|undefined} _action
-         * @memberof AICommon.BotReminderMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotReminderMetadata.prototype, "_action", {
             get: $util.oneOfGetter($oneOfFields = ["action"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotReminderMetadata _name.
-         * @member {"name"|undefined} _name
-         * @memberof AICommon.BotReminderMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotReminderMetadata.prototype, "_name", {
             get: $util.oneOfGetter($oneOfFields = ["name"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotReminderMetadata _nextTriggerTimestamp.
-         * @member {"nextTriggerTimestamp"|undefined} _nextTriggerTimestamp
-         * @memberof AICommon.BotReminderMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotReminderMetadata.prototype, "_nextTriggerTimestamp", {
             get: $util.oneOfGetter($oneOfFields = ["nextTriggerTimestamp"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotReminderMetadata _frequency.
-         * @member {"frequency"|undefined} _frequency
-         * @memberof AICommon.BotReminderMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotReminderMetadata.prototype, "_frequency", {
             get: $util.oneOfGetter($oneOfFields = ["frequency"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -23268,78 +22666,43 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMediaMetadata _fileSha256.
-         * @member {"fileSha256"|undefined} _fileSha256
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_fileSha256", {
             get: $util.oneOfGetter($oneOfFields = ["fileSha256"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _mediaKey.
-         * @member {"mediaKey"|undefined} _mediaKey
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_mediaKey", {
             get: $util.oneOfGetter($oneOfFields = ["mediaKey"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _fileEncSha256.
-         * @member {"fileEncSha256"|undefined} _fileEncSha256
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_fileEncSha256", {
             get: $util.oneOfGetter($oneOfFields = ["fileEncSha256"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _directPath.
-         * @member {"directPath"|undefined} _directPath
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_directPath", {
             get: $util.oneOfGetter($oneOfFields = ["directPath"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _mediaKeyTimestamp.
-         * @member {"mediaKeyTimestamp"|undefined} _mediaKeyTimestamp
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_mediaKeyTimestamp", {
             get: $util.oneOfGetter($oneOfFields = ["mediaKeyTimestamp"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _mimetype.
-         * @member {"mimetype"|undefined} _mimetype
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_mimetype", {
             get: $util.oneOfGetter($oneOfFields = ["mimetype"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMediaMetadata _orientationType.
-         * @member {"orientationType"|undefined} _orientationType
-         * @memberof AICommon.BotMediaMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMediaMetadata.prototype, "_orientationType", {
             get: $util.oneOfGetter($oneOfFields = ["orientationType"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -23724,23 +23087,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotSessionMetadata _sessionId.
-         * @member {"sessionId"|undefined} _sessionId
-         * @memberof AICommon.BotSessionMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSessionMetadata.prototype, "_sessionId", {
             get: $util.oneOfGetter($oneOfFields = ["sessionId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotSessionMetadata _sessionSource.
-         * @member {"sessionSource"|undefined} _sessionSource
-         * @memberof AICommon.BotSessionMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSessionMetadata.prototype, "_sessionSource", {
             get: $util.oneOfGetter($oneOfFields = ["sessionSource"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -23871,6 +23224,7 @@ $root.AICommon = (function() {
                 case 4:
                 case 5:
                 case 6:
+                case 7:
                     break;
                 }
             }
@@ -23925,6 +23279,10 @@ $root.AICommon = (function() {
             case "VOICE":
             case 6:
                 message.sessionSource = 6;
+                break;
+            case "AI_HOME_SESSION":
+            case 7:
+                message.sessionSource = 7;
                 break;
             }
             return message;
@@ -24038,34 +23396,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMetricsMetadata _destinationId.
-         * @member {"destinationId"|undefined} _destinationId
-         * @memberof AICommon.BotMetricsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetricsMetadata.prototype, "_destinationId", {
             get: $util.oneOfGetter($oneOfFields = ["destinationId"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetricsMetadata _destinationEntryPoint.
-         * @member {"destinationEntryPoint"|undefined} _destinationEntryPoint
-         * @memberof AICommon.BotMetricsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetricsMetadata.prototype, "_destinationEntryPoint", {
             get: $util.oneOfGetter($oneOfFields = ["destinationEntryPoint"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMetricsMetadata _threadOrigin.
-         * @member {"threadOrigin"|undefined} _threadOrigin
-         * @memberof AICommon.BotMetricsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMetricsMetadata.prototype, "_threadOrigin", {
             get: $util.oneOfGetter($oneOfFields = ["threadOrigin"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -24234,6 +23577,10 @@ $root.AICommon = (function() {
                 case 36:
                 case 37:
                 case 38:
+                case 39:
+                case 40:
+                case 41:
+                case 45:
                     break;
                 }
             }
@@ -24429,6 +23776,22 @@ $root.AICommon = (function() {
             case "ASK_META_AI_MEDIA_VIEWER_GROUP":
             case 38:
                 message.destinationEntryPoint = 38;
+                break;
+            case "MEDIA_PICKER_1_ON_1_CHAT":
+            case 39:
+                message.destinationEntryPoint = 39;
+                break;
+            case "MEDIA_PICKER_GROUP_CHAT":
+            case 40:
+                message.destinationEntryPoint = 40;
+                break;
+            case "ASK_META_AI_NO_SEARCH_RESULTS":
+            case 41:
+                message.destinationEntryPoint = 41;
+                break;
+            case "META_AI_SETTINGS":
+            case 45:
+                message.destinationEntryPoint = 45;
                 break;
             }
             switch (object.threadOrigin) {
@@ -24790,12 +24153,7 @@ $root.AICommon = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * Keyword _value.
-             * @member {"value"|undefined} _value
-             * @memberof AICommon.BotRenderingMetadata.Keyword
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Keyword.prototype, "_value", {
                 get: $util.oneOfGetter($oneOfFields = ["value"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -25055,23 +24413,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotPromotionMessageMetadata _promotionType.
-         * @member {"promotionType"|undefined} _promotionType
-         * @memberof AICommon.BotPromotionMessageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPromotionMessageMetadata.prototype, "_promotionType", {
             get: $util.oneOfGetter($oneOfFields = ["promotionType"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPromotionMessageMetadata _buttonTitle.
-         * @member {"buttonTitle"|undefined} _buttonTitle
-         * @memberof AICommon.BotPromotionMessageMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPromotionMessageMetadata.prototype, "_buttonTitle", {
             get: $util.oneOfGetter($oneOfFields = ["buttonTitle"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -25375,34 +24723,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotSignatureVerificationUseCaseProof _version.
-         * @member {"version"|undefined} _version
-         * @memberof AICommon.BotSignatureVerificationUseCaseProof
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSignatureVerificationUseCaseProof.prototype, "_version", {
             get: $util.oneOfGetter($oneOfFields = ["version"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotSignatureVerificationUseCaseProof _useCase.
-         * @member {"useCase"|undefined} _useCase
-         * @memberof AICommon.BotSignatureVerificationUseCaseProof
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSignatureVerificationUseCaseProof.prototype, "_useCase", {
             get: $util.oneOfGetter($oneOfFields = ["useCase"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotSignatureVerificationUseCaseProof _signature.
-         * @member {"signature"|undefined} _signature
-         * @memberof AICommon.BotSignatureVerificationUseCaseProof
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSignatureVerificationUseCaseProof.prototype, "_signature", {
             get: $util.oneOfGetter($oneOfFields = ["signature"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -25960,23 +25293,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMemoryFact _fact.
-         * @member {"fact"|undefined} _fact
-         * @memberof AICommon.BotMemoryFact
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMemoryFact.prototype, "_fact", {
             get: $util.oneOfGetter($oneOfFields = ["fact"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotMemoryFact _factId.
-         * @member {"factId"|undefined} _factId
-         * @memberof AICommon.BotMemoryFact
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMemoryFact.prototype, "_factId", {
             get: $util.oneOfGetter($oneOfFields = ["factId"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -26232,12 +25555,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotMemoryMetadata _disclaimer.
-         * @member {"disclaimer"|undefined} _disclaimer
-         * @memberof AICommon.BotMemoryMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotMemoryMetadata.prototype, "_disclaimer", {
             get: $util.oneOfGetter($oneOfFields = ["disclaimer"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -26525,12 +25843,7 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotLinkedAccount _type.
-         * @member {"type"|undefined} _type
-         * @memberof AICommon.BotLinkedAccount
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotLinkedAccount.prototype, "_type", {
             get: $util.oneOfGetter($oneOfFields = ["type"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -26793,23 +26106,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotLinkedAccountsMetadata _acAuthTokens.
-         * @member {"acAuthTokens"|undefined} _acAuthTokens
-         * @memberof AICommon.BotLinkedAccountsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotLinkedAccountsMetadata.prototype, "_acAuthTokens", {
             get: $util.oneOfGetter($oneOfFields = ["acAuthTokens"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotLinkedAccountsMetadata _acErrorCode.
-         * @member {"acErrorCode"|undefined} _acErrorCode
-         * @memberof AICommon.BotLinkedAccountsMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotLinkedAccountsMetadata.prototype, "_acErrorCode", {
             get: $util.oneOfGetter($oneOfFields = ["acErrorCode"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -27092,23 +26395,13 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotPromptSuggestion _prompt.
-         * @member {"prompt"|undefined} _prompt
-         * @memberof AICommon.BotPromptSuggestion
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPromptSuggestion.prototype, "_prompt", {
             get: $util.oneOfGetter($oneOfFields = ["prompt"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPromptSuggestion _promptId.
-         * @member {"promptId"|undefined} _promptId
-         * @memberof AICommon.BotPromptSuggestion
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPromptSuggestion.prototype, "_promptId", {
             get: $util.oneOfGetter($oneOfFields = ["promptId"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -27598,34 +26891,19 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotSuggestedPromptMetadata _selectedPromptIndex.
-         * @member {"selectedPromptIndex"|undefined} _selectedPromptIndex
-         * @memberof AICommon.BotSuggestedPromptMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSuggestedPromptMetadata.prototype, "_selectedPromptIndex", {
             get: $util.oneOfGetter($oneOfFields = ["selectedPromptIndex"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotSuggestedPromptMetadata _promptSuggestions.
-         * @member {"promptSuggestions"|undefined} _promptSuggestions
-         * @memberof AICommon.BotSuggestedPromptMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSuggestedPromptMetadata.prototype, "_promptSuggestions", {
             get: $util.oneOfGetter($oneOfFields = ["promptSuggestions"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotSuggestedPromptMetadata _selectedPromptId.
-         * @member {"selectedPromptId"|undefined} _selectedPromptId
-         * @memberof AICommon.BotSuggestedPromptMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotSuggestedPromptMetadata.prototype, "_selectedPromptId", {
             get: $util.oneOfGetter($oneOfFields = ["selectedPromptId"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -28014,133 +27292,73 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotPluginMetadata _provider.
-         * @member {"provider"|undefined} _provider
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_provider", {
             get: $util.oneOfGetter($oneOfFields = ["provider"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _pluginType.
-         * @member {"pluginType"|undefined} _pluginType
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_pluginType", {
             get: $util.oneOfGetter($oneOfFields = ["pluginType"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _thumbnailCdnUrl.
-         * @member {"thumbnailCdnUrl"|undefined} _thumbnailCdnUrl
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_thumbnailCdnUrl", {
             get: $util.oneOfGetter($oneOfFields = ["thumbnailCdnUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _profilePhotoCdnUrl.
-         * @member {"profilePhotoCdnUrl"|undefined} _profilePhotoCdnUrl
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_profilePhotoCdnUrl", {
             get: $util.oneOfGetter($oneOfFields = ["profilePhotoCdnUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _searchProviderUrl.
-         * @member {"searchProviderUrl"|undefined} _searchProviderUrl
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_searchProviderUrl", {
             get: $util.oneOfGetter($oneOfFields = ["searchProviderUrl"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _referenceIndex.
-         * @member {"referenceIndex"|undefined} _referenceIndex
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_referenceIndex", {
             get: $util.oneOfGetter($oneOfFields = ["referenceIndex"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _expectedLinksCount.
-         * @member {"expectedLinksCount"|undefined} _expectedLinksCount
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_expectedLinksCount", {
             get: $util.oneOfGetter($oneOfFields = ["expectedLinksCount"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _searchQuery.
-         * @member {"searchQuery"|undefined} _searchQuery
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_searchQuery", {
             get: $util.oneOfGetter($oneOfFields = ["searchQuery"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _parentPluginMessageKey.
-         * @member {"parentPluginMessageKey"|undefined} _parentPluginMessageKey
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_parentPluginMessageKey", {
             get: $util.oneOfGetter($oneOfFields = ["parentPluginMessageKey"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _deprecatedField.
-         * @member {"deprecatedField"|undefined} _deprecatedField
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_deprecatedField", {
             get: $util.oneOfGetter($oneOfFields = ["deprecatedField"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _parentPluginType.
-         * @member {"parentPluginType"|undefined} _parentPluginType
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_parentPluginType", {
             get: $util.oneOfGetter($oneOfFields = ["parentPluginType"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotPluginMetadata _faviconCdnUrl.
-         * @member {"faviconCdnUrl"|undefined} _faviconCdnUrl
-         * @memberof AICommon.BotPluginMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotPluginMetadata.prototype, "_faviconCdnUrl", {
             get: $util.oneOfGetter($oneOfFields = ["faviconCdnUrl"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -28733,56 +27951,31 @@ $root.AICommon = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * BotAvatarMetadata _sentiment.
-         * @member {"sentiment"|undefined} _sentiment
-         * @memberof AICommon.BotAvatarMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAvatarMetadata.prototype, "_sentiment", {
             get: $util.oneOfGetter($oneOfFields = ["sentiment"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAvatarMetadata _behaviorGraph.
-         * @member {"behaviorGraph"|undefined} _behaviorGraph
-         * @memberof AICommon.BotAvatarMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAvatarMetadata.prototype, "_behaviorGraph", {
             get: $util.oneOfGetter($oneOfFields = ["behaviorGraph"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAvatarMetadata _action.
-         * @member {"action"|undefined} _action
-         * @memberof AICommon.BotAvatarMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAvatarMetadata.prototype, "_action", {
             get: $util.oneOfGetter($oneOfFields = ["action"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAvatarMetadata _intensity.
-         * @member {"intensity"|undefined} _intensity
-         * @memberof AICommon.BotAvatarMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAvatarMetadata.prototype, "_intensity", {
             get: $util.oneOfGetter($oneOfFields = ["intensity"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * BotAvatarMetadata _wordCount.
-         * @member {"wordCount"|undefined} _wordCount
-         * @memberof AICommon.BotAvatarMetadata
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(BotAvatarMetadata.prototype, "_wordCount", {
             get: $util.oneOfGetter($oneOfFields = ["wordCount"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -29106,6 +28299,7 @@ $root.AICommon = (function() {
      * @property {number} EMU_FLASH=4 EMU_FLASH value
      * @property {number} EMU_FLASH_FOLLOWUP=5 EMU_FLASH_FOLLOWUP value
      * @property {number} VOICE=6 VOICE value
+     * @property {number} AI_HOME_SESSION=7 AI_HOME_SESSION value
      */
     AICommon.BotSessionSource = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -29116,6 +28310,7 @@ $root.AICommon = (function() {
         values[valuesById[4] = "EMU_FLASH"] = 4;
         values[valuesById[5] = "EMU_FLASH_FOLLOWUP"] = 5;
         values[valuesById[6] = "VOICE"] = 6;
+        values[valuesById[7] = "AI_HOME_SESSION"] = 7;
         return values;
     })();
 
@@ -29182,6 +28377,10 @@ $root.AICommon = (function() {
      * @property {number} ATTACHMENT_TRAY_GROUP_CHAT=36 ATTACHMENT_TRAY_GROUP_CHAT value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_1ON1=37 ASK_META_AI_MEDIA_VIEWER_1ON1 value
      * @property {number} ASK_META_AI_MEDIA_VIEWER_GROUP=38 ASK_META_AI_MEDIA_VIEWER_GROUP value
+     * @property {number} MEDIA_PICKER_1_ON_1_CHAT=39 MEDIA_PICKER_1_ON_1_CHAT value
+     * @property {number} MEDIA_PICKER_GROUP_CHAT=40 MEDIA_PICKER_GROUP_CHAT value
+     * @property {number} ASK_META_AI_NO_SEARCH_RESULTS=41 ASK_META_AI_NO_SEARCH_RESULTS value
+     * @property {number} META_AI_SETTINGS=45 META_AI_SETTINGS value
      */
     AICommon.BotMetricsEntryPoint = (function() {
         var valuesById = {}, values = Object.create(valuesById);
@@ -29224,6 +28423,10 @@ $root.AICommon = (function() {
         values[valuesById[36] = "ATTACHMENT_TRAY_GROUP_CHAT"] = 36;
         values[valuesById[37] = "ASK_META_AI_MEDIA_VIEWER_1ON1"] = 37;
         values[valuesById[38] = "ASK_META_AI_MEDIA_VIEWER_GROUP"] = 38;
+        values[valuesById[39] = "MEDIA_PICKER_1_ON_1_CHAT"] = 39;
+        values[valuesById[40] = "MEDIA_PICKER_GROUP_CHAT"] = 40;
+        values[valuesById[41] = "ASK_META_AI_NO_SEARCH_RESULTS"] = 41;
+        values[valuesById[45] = "META_AI_SETTINGS"] = 45;
         return values;
     })();
 
@@ -29301,45 +28504,25 @@ $root.Protocol = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * LimitSharing _sharingLimited.
-         * @member {"sharingLimited"|undefined} _sharingLimited
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(LimitSharing.prototype, "_sharingLimited", {
             get: $util.oneOfGetter($oneOfFields = ["sharingLimited"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * LimitSharing _trigger.
-         * @member {"trigger"|undefined} _trigger
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(LimitSharing.prototype, "_trigger", {
             get: $util.oneOfGetter($oneOfFields = ["trigger"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * LimitSharing _limitSharingSettingTimestamp.
-         * @member {"limitSharingSettingTimestamp"|undefined} _limitSharingSettingTimestamp
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(LimitSharing.prototype, "_limitSharingSettingTimestamp", {
             get: $util.oneOfGetter($oneOfFields = ["limitSharingSettingTimestamp"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * LimitSharing _initiatedByMe.
-         * @member {"initiatedByMe"|undefined} _initiatedByMe
-         * @memberof Protocol.LimitSharing
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(LimitSharing.prototype, "_initiatedByMe", {
             get: $util.oneOfGetter($oneOfFields = ["initiatedByMe"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -29695,45 +28878,25 @@ $root.Protocol = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * MessageKey _remoteJid.
-         * @member {"remoteJid"|undefined} _remoteJid
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(MessageKey.prototype, "_remoteJid", {
             get: $util.oneOfGetter($oneOfFields = ["remoteJid"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * MessageKey _fromMe.
-         * @member {"fromMe"|undefined} _fromMe
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(MessageKey.prototype, "_fromMe", {
             get: $util.oneOfGetter($oneOfFields = ["fromMe"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * MessageKey _id.
-         * @member {"id"|undefined} _id
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(MessageKey.prototype, "_id", {
             get: $util.oneOfGetter($oneOfFields = ["id"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * MessageKey _participant.
-         * @member {"participant"|undefined} _participant
-         * @memberof Protocol.MessageKey
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(MessageKey.prototype, "_participant", {
             get: $util.oneOfGetter($oneOfFields = ["participant"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -30080,23 +29243,13 @@ $root.StatusAttributions = (function() {
         // OneOf field names bound to virtual getters and setters
         var $oneOfFields;
 
-        /**
-         * StatusAttribution _type.
-         * @member {"type"|undefined} _type
-         * @memberof StatusAttributions.StatusAttribution
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(StatusAttribution.prototype, "_type", {
             get: $util.oneOfGetter($oneOfFields = ["type"]),
             set: $util.oneOfSetter($oneOfFields)
         });
 
-        /**
-         * StatusAttribution _actionUrl.
-         * @member {"actionUrl"|undefined} _actionUrl
-         * @memberof StatusAttributions.StatusAttribution
-         * @instance
-         */
+        // Virtual OneOf for proto3 optional field
         Object.defineProperty(StatusAttribution.prototype, "_actionUrl", {
             get: $util.oneOfGetter($oneOfFields = ["actionUrl"]),
             set: $util.oneOfSetter($oneOfFields)
@@ -30548,12 +29701,7 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * AiCreatedAttribution _source.
-             * @member {"source"|undefined} _source
-             * @memberof StatusAttributions.StatusAttribution.AiCreatedAttribution
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(AiCreatedAttribution.prototype, "_source", {
                 get: $util.oneOfGetter($oneOfFields = ["source"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -30831,45 +29979,25 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * ExternalShare _actionUrl.
-             * @member {"actionUrl"|undefined} _actionUrl
-             * @memberof StatusAttributions.StatusAttribution.ExternalShare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(ExternalShare.prototype, "_actionUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["actionUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * ExternalShare _source.
-             * @member {"source"|undefined} _source
-             * @memberof StatusAttributions.StatusAttribution.ExternalShare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(ExternalShare.prototype, "_source", {
                 get: $util.oneOfGetter($oneOfFields = ["source"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * ExternalShare _duration.
-             * @member {"duration"|undefined} _duration
-             * @memberof StatusAttributions.StatusAttribution.ExternalShare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(ExternalShare.prototype, "_duration", {
                 get: $util.oneOfGetter($oneOfFields = ["duration"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * ExternalShare _actionFallbackUrl.
-             * @member {"actionFallbackUrl"|undefined} _actionFallbackUrl
-             * @memberof StatusAttributions.StatusAttribution.ExternalShare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(ExternalShare.prototype, "_actionFallbackUrl", {
                 get: $util.oneOfGetter($oneOfFields = ["actionFallbackUrl"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -31237,12 +30365,7 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * GroupStatus _authorJid.
-             * @member {"authorJid"|undefined} _authorJid
-             * @memberof StatusAttributions.StatusAttribution.GroupStatus
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(GroupStatus.prototype, "_authorJid", {
                 get: $util.oneOfGetter($oneOfFields = ["authorJid"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -31505,67 +30628,37 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * Music _authorName.
-             * @member {"authorName"|undefined} _authorName
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_authorName", {
                 get: $util.oneOfGetter($oneOfFields = ["authorName"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * Music _songId.
-             * @member {"songId"|undefined} _songId
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_songId", {
                 get: $util.oneOfGetter($oneOfFields = ["songId"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * Music _title.
-             * @member {"title"|undefined} _title
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_title", {
                 get: $util.oneOfGetter($oneOfFields = ["title"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * Music _author.
-             * @member {"author"|undefined} _author
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_author", {
                 get: $util.oneOfGetter($oneOfFields = ["author"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * Music _artistAttribution.
-             * @member {"artistAttribution"|undefined} _artistAttribution
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_artistAttribution", {
                 get: $util.oneOfGetter($oneOfFields = ["artistAttribution"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * Music _isExplicit.
-             * @member {"isExplicit"|undefined} _isExplicit
-             * @memberof StatusAttributions.StatusAttribution.Music
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(Music.prototype, "_isExplicit", {
                 get: $util.oneOfGetter($oneOfFields = ["isExplicit"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -31873,12 +30966,7 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * RLAttribution _source.
-             * @member {"source"|undefined} _source
-             * @memberof StatusAttributions.StatusAttribution.RLAttribution
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(RLAttribution.prototype, "_source", {
                 get: $util.oneOfGetter($oneOfFields = ["source"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -32152,23 +31240,13 @@ $root.StatusAttributions = (function() {
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
 
-            /**
-             * StatusReshare _source.
-             * @member {"source"|undefined} _source
-             * @memberof StatusAttributions.StatusAttribution.StatusReshare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(StatusReshare.prototype, "_source", {
                 get: $util.oneOfGetter($oneOfFields = ["source"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
 
-            /**
-             * StatusReshare _metadata.
-             * @member {"metadata"|undefined} _metadata
-             * @memberof StatusAttributions.StatusAttribution.StatusReshare
-             * @instance
-             */
+            // Virtual OneOf for proto3 optional field
             Object.defineProperty(StatusReshare.prototype, "_metadata", {
                 get: $util.oneOfGetter($oneOfFields = ["metadata"]),
                 set: $util.oneOfSetter($oneOfFields)
@@ -32468,45 +31546,25 @@ $root.StatusAttributions = (function() {
                 // OneOf field names bound to virtual getters and setters
                 var $oneOfFields;
 
-                /**
-                 * Metadata _duration.
-                 * @member {"duration"|undefined} _duration
-                 * @memberof StatusAttributions.StatusAttribution.StatusReshare.Metadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(Metadata.prototype, "_duration", {
                     get: $util.oneOfGetter($oneOfFields = ["duration"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * Metadata _channelJid.
-                 * @member {"channelJid"|undefined} _channelJid
-                 * @memberof StatusAttributions.StatusAttribution.StatusReshare.Metadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(Metadata.prototype, "_channelJid", {
                     get: $util.oneOfGetter($oneOfFields = ["channelJid"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * Metadata _channelMessageId.
-                 * @member {"channelMessageId"|undefined} _channelMessageId
-                 * @memberof StatusAttributions.StatusAttribution.StatusReshare.Metadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(Metadata.prototype, "_channelMessageId", {
                     get: $util.oneOfGetter($oneOfFields = ["channelMessageId"]),
                     set: $util.oneOfSetter($oneOfFields)
                 });
 
-                /**
-                 * Metadata _hasMultipleReshares.
-                 * @member {"hasMultipleReshares"|undefined} _hasMultipleReshares
-                 * @memberof StatusAttributions.StatusAttribution.StatusReshare.Metadata
-                 * @instance
-                 */
+                // Virtual OneOf for proto3 optional field
                 Object.defineProperty(Metadata.prototype, "_hasMultipleReshares", {
                     get: $util.oneOfGetter($oneOfFields = ["hasMultipleReshares"]),
                     set: $util.oneOfSetter($oneOfFields)

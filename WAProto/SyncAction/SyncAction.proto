@@ -148,6 +148,7 @@ message SyncActionValue {
         optional bool deleted = 1;
         repeated SyncActionValue.BroadcastListParticipant participants = 2;
         optional string listName = 3;
+        repeated string labelIds = 4;
     }
     message CallLogAction {
         optional CallLogRecord callLogRecord = 1;
@@ -651,6 +652,7 @@ enum MutationProps {
     SETTINGS_SYNC_ACTION = 78;
     SHARE_OWN_PN = 10001;
     BUSINESS_BROADCAST_ACTION = 10002;
+    AI_THREAD_DELETE_ACTION = 10003;
 }
 
 enum CollectionName {
