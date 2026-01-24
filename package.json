@@ -1,6 +1,6 @@
 {
   "name": "@innovatorssoft/baileys",
-  "version": "7.3.5",
+  "version": "7.3.6",
   "description": "WhatsApp API Modification By innovatorssoft",
   "keywords": [
     "whatsapp",
@@ -39,7 +39,8 @@
     "prepare": "tsc",
     "preinstall": "node ./engine-requirements.js",
     "release": "release-it",
-    "test": "jest"
+    "test": "jest",
+    "update:version": "node scripts/update-version.js"
   },
   "dependencies": {
     "@hapi/boom": "^9.1.3",

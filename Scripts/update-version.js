@@ -20,9 +20,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const path_1 = require("path");
-const url_1 = require("url");
-const __filename = (0, url_1.fileURLToPath)(import.meta.url);
-const __dirname = (0, path_1.dirname)(__filename);
 const ROOT_DIR = (0, path_1.join)(__dirname, '..');
 /**
  * Fetch latest WhatsApp Web version
