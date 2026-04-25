@@ -11,17 +11,17 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     }[]>;
     groupRequestParticipantsUpdate: (jid: string, participants: string[], action: "approve" | "reject") => Promise<{
         status: string;
-        jid: string | undefined;
+        jid: string;
     }[]>;
     groupParticipantsUpdate: (jid: string, participants: string[], action: ParticipantAction) => Promise<{
         status: string;
-        jid: string | undefined;
+        jid: string;
         content: BinaryNode;
     }[]>;
     groupUpdateDescription: (jid: string, description?: string) => Promise<void>;
-    groupInviteCode: (jid: string) => Promise<string | undefined>;
-    groupRevokeInvite: (jid: string) => Promise<string | undefined>;
-    groupAcceptInvite: (code: string) => Promise<string | undefined>;
+    groupInviteCode: (jid: string) => Promise<string>;
+    groupRevokeInvite: (jid: string) => Promise<string>;
+    groupAcceptInvite: (code: string) => Promise<string>;
     /**
      * revoke a v4 invite for someone
      * @param groupJid group jid
@@ -50,7 +50,7 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     };
     createCallLink: (type: "audio" | "video", event?: {
         startTime: number;
-    }, timeoutMs?: number) => Promise<string | undefined>;
+    }, timeoutMs?: number) => Promise<string>;
     getBotListV2: () => Promise<import("../Types").BotListInfo[]>;
     messageMutex: {
         mutex<T>(code: () => Promise<T> | T): Promise<T>;
@@ -71,10 +71,10 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     appPatch: (patchCreate: import("../Types").WAPatchCreate) => Promise<void>;
     sendPresenceUpdate: (type: import("../Types").WAPresence, toJid?: string) => Promise<void>;
     presenceSubscribe: (toJid: string) => Promise<void>;
-    profilePictureUrl: (jid: string, type?: "preview" | "image", timeoutMs?: number) => Promise<string | undefined>;
-    fetchBlocklist: () => Promise<(string | undefined)[]>;
-    fetchStatus: (...jids: string[]) => Promise<import("../index.js").USyncQueryResultList[] | undefined>;
-    fetchDisappearingDuration: (...jids: string[]) => Promise<import("../index.js").USyncQueryResultList[] | undefined>;
+    profilePictureUrl: (jid: string, type?: "preview" | "image", timeoutMs?: number) => Promise<string>;
+    fetchBlocklist: () => Promise<string[]>;
+    fetchStatus: (...jids: string[]) => Promise<import("../index.js").USyncQueryResultList[]>;
+    fetchDisappearingDuration: (...jids: string[]) => Promise<import("../index.js").USyncQueryResultList[]>;
     updateProfilePicture: (jid: string, content: import("../Types").WAMediaUpload, dimensions?: {
         width: number;
         height: number;
@@ -124,10 +124,10 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
         keys: import("../Types").SignalKeyStoreWithTransaction;
     };
     signalRepository: import("../Types").SignalRepositoryWithLIDStore;
-    user: import("../Types").Contact | undefined;
+    user: import("../Types").Contact;
     generateMessageTag: () => string;
     query: (node: BinaryNode, timeoutMs?: number) => Promise<any>;
-    waitForMessage: <T>(msgId: string, timeoutMs?: number | undefined) => Promise<T | undefined>;
+    waitForMessage: <T>(msgId: string, timeoutMs?: number) => Promise<T>;
     waitForSocketOpen: () => Promise<void>;
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
     sendNode: (frame: BinaryNode) => Promise<void>;
@@ -144,11 +144,11 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     wamBuffer: import("../index.js").BinaryInfo;
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
     sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
-    executeUSyncQuery: (usyncQuery: import("../index.js").USyncQuery) => Promise<import("../index.js").USyncQueryResult | undefined>;
+    executeUSyncQuery: (usyncQuery: import("../index.js").USyncQuery) => Promise<import("../index.js").USyncQueryResult>;
     onWhatsApp: (...phoneNumber: string[]) => Promise<{
         jid: string;
         exists: boolean;
-    }[] | undefined>;
+    }[]>;
 };
 export declare const extractGroupMetadata: (result: BinaryNode) => GroupMetadata;
 export type GroupsSocket = ReturnType<typeof makeGroupsSocket>;

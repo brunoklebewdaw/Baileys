@@ -39,8 +39,8 @@ export declare const SERVER_ERROR_CODES: {
 };
 export declare const extractAddressingContext: (stanza: BinaryNode) => {
     addressingMode: string;
-    senderAlt: string | undefined;
-    recipientAlt: string | undefined;
+    senderAlt: string;
+    recipientAlt: string;
 };
 /**
  * Decode the received node as a message.
@@ -53,7 +53,7 @@ export declare function decodeMessageNode(stanza: BinaryNode, meId: string, meLi
 };
 export declare const decryptMessageNode: (stanza: BinaryNode, meId: string, meLid: string, repository: SignalRepositoryWithLIDStore, logger: ILogger) => {
     fullMessage: WAMessage;
-    category: string | undefined;
+    category: string;
     author: string;
     decrypt(): Promise<void>;
 };

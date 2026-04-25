@@ -25,10 +25,10 @@ export declare const makeSocket: (config: SocketConfig) => {
         keys: import("../Types").SignalKeyStoreWithTransaction;
     };
     signalRepository: import("../Types").SignalRepositoryWithLIDStore;
-    readonly user: import("../Types").Contact | undefined;
+    readonly user: import("../Types").Contact;
     generateMessageTag: () => string;
     query: (node: BinaryNode, timeoutMs?: number) => Promise<any>;
-    waitForMessage: <T>(msgId: string, timeoutMs?: number | undefined) => Promise<T | undefined>;
+    waitForMessage: <T>(msgId: string, timeoutMs?: number) => Promise<T>;
     waitForSocketOpen: () => Promise<void>;
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
     sendNode: (frame: BinaryNode) => Promise<void>;
@@ -46,10 +46,10 @@ export declare const makeSocket: (config: SocketConfig) => {
     /** Waits for the connection to WA to reach a state */
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
     sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
-    executeUSyncQuery: (usyncQuery: USyncQuery) => Promise<import("../index.js").USyncQueryResult | undefined>;
+    executeUSyncQuery: (usyncQuery: USyncQuery) => Promise<import("../index.js").USyncQueryResult>;
     onWhatsApp: (...phoneNumber: string[]) => Promise<{
         jid: string;
         exists: boolean;
-    }[] | undefined>;
+    }[]>;
 };
 //# sourceMappingURL=socket.d.ts.map

@@ -44,7 +44,7 @@ export declare const fetchLatestBaileysVersion: (options?: RequestInit) => Promi
 } | {
     version: WAVersion;
     isLatest: boolean;
-    error: unknown;
+    error: any;
 }>;
 /**
  * A utility that fetches the latest web version of whatsapp.
@@ -57,7 +57,7 @@ export declare const fetchLatestWaWebVersion: (options?: RequestInit) => Promise
 } | {
     version: WAVersion;
     isLatest: boolean;
-    error: unknown;
+    error: any;
 }>;
 /** unique message tag prefix for MD clients */
 export declare const generateMdTagPrefix: () => string;
@@ -65,7 +65,7 @@ export declare const generateMdTagPrefix: () => string;
  * Given a type of receipt, returns what the new status of the message should be
  * @param type type from receipt
  */
-export declare const getStatusFromReceiptType: (type: string | undefined) => proto.WebMessageInfo.Status | undefined;
+export declare const getStatusFromReceiptType: (type: string | undefined) => proto.WebMessageInfo.Status;
 /**
  * Stream errors generally provide a reason, map that to a baileys DisconnectReason
  * @param reason the string reason given, eg. "conflict"

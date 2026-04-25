@@ -14,7 +14,7 @@ type Mac = {
 export declare const makeLtHashGenerator: ({ indexValueMap, hash }: Pick<LTHashState, "hash" | "indexValueMap">) => {
     mix: ({ indexMac, valueMac, operation }: Mac) => void;
     finish: () => {
-        hash: Buffer<any>;
+        hash: Buffer<ArrayBuffer>;
         indexValueMap: {
             [indexMacBase64: string]: {
                 valueMac: Uint8Array | Buffer;
@@ -42,7 +42,7 @@ export declare const encodeSyncdPatch: ({ type, index, syncAction, apiVersion, o
     state: LTHashState;
 }>;
 export declare const decodeSyncdMutations: (msgMutations: (proto.ISyncdMutation | proto.ISyncdRecord)[], initialState: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, onMutation: (mutation: ChatMutation) => void, validateMacs: boolean) => Promise<{
-    hash: Buffer<any>;
+    hash: Buffer<ArrayBuffer>;
     indexValueMap: {
         [indexMacBase64: string]: {
             valueMac: Uint8Array | Buffer;
@@ -50,7 +50,7 @@ export declare const decodeSyncdMutations: (msgMutations: (proto.ISyncdMutation 
     };
 }>;
 export declare const decodeSyncdPatch: (msg: proto.ISyncdPatch, name: WAPatchName, initialState: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, onMutation: (mutation: ChatMutation) => void, validateMacs: boolean) => Promise<{
-    hash: Buffer<any>;
+    hash: Buffer<ArrayBuffer>;
     indexValueMap: {
         [indexMacBase64: string]: {
             valueMac: Uint8Array | Buffer;

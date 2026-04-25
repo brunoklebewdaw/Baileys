@@ -2,7 +2,7 @@ import type { CatalogCollection, OrderDetails, Product, ProductCreate, ProductUp
 import { type BinaryNode } from '../WABinary';
 export declare const parseCatalogNode: (node: BinaryNode) => {
     products: Product[];
-    nextPageCursor: string | undefined;
+    nextPageCursor: string;
 };
 export declare const parseCollectionsNode: (node: BinaryNode) => {
     collections: CatalogCollection[];

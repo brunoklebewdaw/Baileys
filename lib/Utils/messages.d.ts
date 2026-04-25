@@ -9,8 +9,8 @@ type ExtractByKey<T, K extends PropertyKey> = T extends Record<K, any> ? T : nev
  * @param text eg. hello https://google.com
  * @returns the URL, eg. https://google.com
  */
-export declare const extractUrlFromText: (text: string) => string | undefined;
-export declare const generateLinkPreviewIfRequired: (text: string, getUrlInfo: MessageGenerationOptions["getUrlInfo"], logger: MessageGenerationOptions["logger"]) => Promise<import("../Types").WAUrlInfo | undefined>;
+export declare const extractUrlFromText: (text: string) => string;
+export declare const generateLinkPreviewIfRequired: (text: string, getUrlInfo: MessageGenerationOptions["getUrlInfo"], logger: MessageGenerationOptions["logger"]) => Promise<import("../Types").WAUrlInfo>;
 export declare const prepareWAMessageMedia: (message: AnyMediaMessageContent, options: MessageContentGenerationOptions) => Promise<proto.Message>;
 export declare const prepareDisappearingMessageSettingContent: (ephemeralExpiration?: number) => proto.Message;
 /**
@@ -24,7 +24,7 @@ export declare const generateWAMessageContent: (message: AnyMessageContent, opti
 export declare const generateWAMessageFromContent: (jid: string, message: WAMessageContent, options: MessageGenerationOptionsFromContent) => WAMessage;
 export declare const generateWAMessage: (jid: string, content: AnyMessageContent, options: MessageGenerationOptions) => Promise<WAMessage>;
 /** Get the key to access the true type of content */
-export declare const getContentType: (content: proto.IMessage | undefined) => keyof proto.IMessage | undefined;
+export declare const getContentType: (content: proto.IMessage | undefined) => keyof proto.IMessage;
 /**
  * Normalizes ephemeral, view once messages to regular message content
  * Eg. image messages in ephemeral messages, in view once messages etc.
