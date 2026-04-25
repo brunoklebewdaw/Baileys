@@ -1,23 +1,22 @@
-import { AxiosRequestConfig } from 'axios'
-import { proto } from '../../WAProto'
-import { Chat, Contact } from '../Types'
-
-export declare const downloadHistory: (msg: proto.Message.IHistorySyncNotification, options: AxiosRequestConfig<{}>) => Promise<proto.HistorySync>
-
-export declare const processHistoryMessage: (item: proto.IHistorySync) => {
-    chats: Chat[]
-    contacts: Contact[]
-    messages: proto.IWebMessageInfo[]
-    syncType: proto.HistorySync.HistorySyncType
-    progress: number | null | undefined
-}
-
-export declare const downloadAndProcessHistorySyncNotification: (msg: proto.Message.IHistorySyncNotification, options: AxiosRequestConfig<{}>) => Promise<{
-    chats: Chat[]
-    contacts: Contact[]
-    messages: proto.IWebMessageInfo[]
-    syncType: proto.HistorySync.HistorySyncType
-    progress: number | null | undefined
-}>
-
-export declare const getHistoryMsg: (message: proto.IMessage) => proto.Message.IHistorySyncNotification | null | undefined
+import { proto } from '../../WAProto/index.js';
+import type { Chat, Contact, LIDMapping, WAMessage } from '../Types';
+import type { ILogger } from './logger.js';
+export declare const downloadHistory: (msg: proto.Message.IHistorySyncNotification, options: RequestInit) => Promise<proto.HistorySync>;
+export declare const processHistoryMessage: (item: proto.IHistorySync, logger?: ILogger) => {
+    chats: Chat[];
+    contacts: Contact[];
+    messages: WAMessage[];
+    lidPnMappings: LIDMapping[];
+    syncType: proto.HistorySync.HistorySyncType;
+    progress: number;
+};
+export declare const downloadAndProcessHistorySyncNotification: (msg: proto.Message.IHistorySyncNotification, options: RequestInit, logger?: ILogger) => Promise<{
+    chats: Chat[];
+    contacts: Contact[];
+    messages: WAMessage[];
+    lidPnMappings: LIDMapping[];
+    syncType: proto.HistorySync.HistorySyncType;
+    progress: number;
+}>;
+export declare const getHistoryMsg: (message: proto.IMessage) => proto.Message.IHistorySyncNotification;
+//# sourceMappingURL=history.d.ts.map

@@ -1,6 +1,6 @@
-export * from './USyncBotProfileProtocol'
-export * from './USyncContactProtocol'
-export * from './USyncDeviceProtocol'
-export * from './USyncLIDProtocol'
-export * from './USyncStatusProtocol'
-export * from './USyncDisappearingModeProtocol'
+export * from './USyncDeviceProtocol';
+export * from './USyncContactProtocol';
+export * from './USyncStatusProtocol';
+export * from './USyncDisappearingModeProtocol';
+export * from './USyncUsernameProtocol';
+//# sourceMappingURL=index.d.ts.map

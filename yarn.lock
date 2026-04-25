@@ -415,6 +415,30 @@
   resolved "https://registry.npmjs.org/@iarna/toml/-/toml-2.2.5.tgz"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
+"@innovatorssoft/baileys@^7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@innovatorssoft/baileys/-/baileys-7.4.0.tgz#2c9a7be22315a8a04fd380bc4ef087cadb0348b0"
+  integrity sha512-E3Yt98AvS7AaNpP+pkvtCl4fUJ8sYH+Q20tkgF/x2zOzy/Nh45AgsHGwchukfw4fCxmTyRf0wIgesn3svMzIeA==
+  dependencies:
+    "@adiwajshing/keyed-db" "^0.2.4"
+    "@cacheable/node-cache" "1.5.3"
+    "@hapi/boom" "^9.1.3"
+    "@itsukichan/eslint-config" "^1.0.0"
+    "@itsukichan/libsignal-node" "^1.0.1"
+    async-mutex "^0.5.0"
+    audio-decode "^2.2.2"
+    axios "^1.12.1"
+    cache-manager "^5.7.6"
+    fflate "^0.8.2"
+    link-preview-js "^3.0.14"
+    lodash "^4.17.21"
+    lru-cache "^11.1.0"
+    music-metadata "^7.12.3"
+    pino "^9.6"
+    protobufjs "^7.2.4"
+    qrcode-terminal "^0.12.0"
+    ws "^8.13.0"
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz"
