@@ -1,47 +1,53 @@
-import { assertNodeErrorFree } from '../../WABinary';
+import { assertNodeErrorFree } from '../../WABinary'
 export class USyncContactProtocol {
-    constructor() {
-        this.name = 'contact';
-    }
-    getQueryElement() {
-        return {
-            tag: 'contact',
-            attrs: {}
-        };
-    }
-    getUserElement(user) {
-        if (user.phone) {
-            return {
-                tag: 'contact',
-                attrs: {},
-                content: user.phone
-            };
-        }
-        if (user.username) {
-            return {
-                tag: 'contact',
-                attrs: Object.assign(Object.assign({ username: user.username }, (user.usernameKey ? { pin: user.usernameKey } : {})), (user.lid ? { lid: user.lid } : {}))
-            };
-        }
-        if (user.type) {
-            return {
-                tag: 'contact',
-                attrs: {
-                    type: user.type
-                }
-            };
-        }
-        return {
-            tag: 'contact',
-            attrs: {}
-        };
-    }
-    parser(node) {
-        var _a;
-        if (node.tag === 'contact') {
-            assertNodeErrorFree(node);
-            return ((_a = node === null || node === void 0 ? void 0 : node.attrs) === null || _a === void 0 ? void 0 : _a.type) === 'in';
-        }
-        return false;
-    }
+	constructor() {
+		this.name = 'contact'
+	}
+	getQueryElement() {
+		return {
+			tag: 'contact',
+			attrs: {}
+		}
+	}
+	getUserElement(user) {
+		if (user.phone) {
+			return {
+				tag: 'contact',
+				attrs: {},
+				content: user.phone
+			}
+		}
+		if (user.username) {
+			return {
+				tag: 'contact',
+				attrs: Object.assign(
+					Object.assign({ username: user.username }, user.usernameKey ? { pin: user.usernameKey } : {}),
+					user.lid ? { lid: user.lid } : {}
+				)
+			}
+		}
+		if (user.type) {
+			return {
+				tag: 'contact',
+				attrs: {
+					type: user.type
+				}
+			}
+		}
+		return {
+			tag: 'contact',
+			attrs: {}
+		}
+	}
+	parser(node) {
+		var _a
+		if (node.tag === 'contact') {
+			assertNodeErrorFree(node)
+			return (
+				((_a = node === null || node === void 0 ? void 0 : node.attrs) === null || _a === void 0 ? void 0 : _a.type) ===
+				'in'
+			)
+		}
+		return false
+	}
 }

@@ -1,95 +1,98 @@
-export const S_WHATSAPP_NET = '@s.whatsapp.net';
-export const OFFICIAL_BIZ_JID = '16505361212@c.us';
-export const SERVER_JID = 'server@c.us';
-export const PSA_WID = '0@c.us';
-export const STORIES_JID = 'status@broadcast';
-export const META_AI_JID = '13135550002@c.us';
-export var WAJIDDomains;
-(function (WAJIDDomains) {
-    WAJIDDomains[WAJIDDomains["WHATSAPP"] = 0] = "WHATSAPP";
-    WAJIDDomains[WAJIDDomains["LID"] = 1] = "LID";
-    WAJIDDomains[WAJIDDomains["HOSTED"] = 128] = "HOSTED";
-    WAJIDDomains[WAJIDDomains["HOSTED_LID"] = 129] = "HOSTED_LID";
-})(WAJIDDomains || (WAJIDDomains = {}));
+export const S_WHATSAPP_NET = '@s.whatsapp.net'
+export const OFFICIAL_BIZ_JID = '16505361212@c.us'
+export const SERVER_JID = 'server@c.us'
+export const PSA_WID = '0@c.us'
+export const STORIES_JID = 'status@broadcast'
+export const META_AI_JID = '13135550002@c.us'
+export var WAJIDDomains
+;(function (WAJIDDomains) {
+	WAJIDDomains[(WAJIDDomains['WHATSAPP'] = 0)] = 'WHATSAPP'
+	WAJIDDomains[(WAJIDDomains['LID'] = 1)] = 'LID'
+	WAJIDDomains[(WAJIDDomains['HOSTED'] = 128)] = 'HOSTED'
+	WAJIDDomains[(WAJIDDomains['HOSTED_LID'] = 129)] = 'HOSTED_LID'
+})(WAJIDDomains || (WAJIDDomains = {}))
 export const getServerFromDomainType = (initialServer, domainType) => {
-    switch (domainType) {
-        case WAJIDDomains.LID:
-            return 'lid';
-        case WAJIDDomains.HOSTED:
-            return 'hosted';
-        case WAJIDDomains.HOSTED_LID:
-            return 'hosted.lid';
-        case WAJIDDomains.WHATSAPP:
-        default:
-            return initialServer;
-    }
-};
+	switch (domainType) {
+		case WAJIDDomains.LID:
+			return 'lid'
+		case WAJIDDomains.HOSTED:
+			return 'hosted'
+		case WAJIDDomains.HOSTED_LID:
+			return 'hosted.lid'
+		case WAJIDDomains.WHATSAPP:
+		default:
+			return initialServer
+	}
+}
 export const jidEncode = (user, server, device, agent) => {
-    return `${user || ''}${!!agent ? `_${agent}` : ''}${!!device ? `:${device}` : ''}@${server}`;
-};
-export const jidDecode = (jid) => {
-    // todo: investigate how to implement hosted ids in this case
-    const sepIdx = typeof jid === 'string' ? jid.indexOf('@') : -1;
-    if (sepIdx < 0) {
-        return undefined;
-    }
-    const server = jid.slice(sepIdx + 1);
-    const userCombined = jid.slice(0, sepIdx);
-    const [userAgent, device] = userCombined.split(':');
-    const [user, agent] = userAgent.split('_');
-    let domainType = WAJIDDomains.WHATSAPP;
-    if (server === 'lid') {
-        domainType = WAJIDDomains.LID;
-    }
-    else if (server === 'hosted') {
-        domainType = WAJIDDomains.HOSTED;
-    }
-    else if (server === 'hosted.lid') {
-        domainType = WAJIDDomains.HOSTED_LID;
-    }
-    else if (agent) {
-        domainType = parseInt(agent);
-    }
-    return {
-        server: server,
-        user: user,
-        domainType,
-        device: device ? +device : undefined
-    };
-};
+	return `${user || ''}${!!agent ? `_${agent}` : ''}${!!device ? `:${device}` : ''}@${server}`
+}
+export const jidDecode = jid => {
+	// todo: investigate how to implement hosted ids in this case
+	const sepIdx = typeof jid === 'string' ? jid.indexOf('@') : -1
+	if (sepIdx < 0) {
+		return undefined
+	}
+	const server = jid.slice(sepIdx + 1)
+	const userCombined = jid.slice(0, sepIdx)
+	const [userAgent, device] = userCombined.split(':')
+	const [user, agent] = userAgent.split('_')
+	let domainType = WAJIDDomains.WHATSAPP
+	if (server === 'lid') {
+		domainType = WAJIDDomains.LID
+	} else if (server === 'hosted') {
+		domainType = WAJIDDomains.HOSTED
+	} else if (server === 'hosted.lid') {
+		domainType = WAJIDDomains.HOSTED_LID
+	} else if (agent) {
+		domainType = parseInt(agent)
+	}
+	return {
+		server: server,
+		user: user,
+		domainType,
+		device: device ? +device : undefined
+	}
+}
 /** is the jid a user */
-export const areJidsSameUser = (jid1, jid2) => { var _a, _b; return ((_a = jidDecode(jid1)) === null || _a === void 0 ? void 0 : _a.user) === ((_b = jidDecode(jid2)) === null || _b === void 0 ? void 0 : _b.user); };
+export const areJidsSameUser = (jid1, jid2) => {
+	var _a, _b
+	return (
+		((_a = jidDecode(jid1)) === null || _a === void 0 ? void 0 : _a.user) ===
+		((_b = jidDecode(jid2)) === null || _b === void 0 ? void 0 : _b.user)
+	)
+}
 /** is the jid Meta AI */
-export const isJidMetaAI = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@bot');
+export const isJidMetaAI = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@bot'))
 /** is the jid a PN user */
-export const isPnUser = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@s.whatsapp.net');
+export const isPnUser = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@s.whatsapp.net'))
 /** is the jid a LID */
-export const isLidUser = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@lid');
+export const isLidUser = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@lid'))
 /** is the jid a broadcast */
-export const isJidBroadcast = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@broadcast');
+export const isJidBroadcast = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@broadcast'))
 /** is the jid a group */
-export const isJidGroup = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@g.us');
+export const isJidGroup = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@g.us'))
 /** is the jid the status broadcast */
-export const isJidStatusBroadcast = (jid) => jid === 'status@broadcast';
+export const isJidStatusBroadcast = jid => jid === 'status@broadcast'
 /** is the jid a newsletter */
-export const isJidNewsletter = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@newsletter');
+export const isJidNewsletter = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@newsletter'))
 /** is the jid a hosted PN */
-export const isHostedPnUser = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@hosted');
+export const isHostedPnUser = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@hosted'))
 /** is the jid a hosted LID */
-export const isHostedLidUser = (jid) => jid === null || jid === void 0 ? void 0 : jid.endsWith('@hosted.lid');
-const botRegexp = /^1313555\d{4}$|^131655500\d{2}$/;
-export const isJidBot = (jid) => jid && botRegexp.test(jid.split('@')[0]) && jid.endsWith('@c.us');
-export const jidNormalizedUser = (jid) => {
-    const result = jidDecode(jid);
-    if (!result) {
-        return '';
-    }
-    const { user, server } = result;
-    return jidEncode(user, server === 'c.us' ? 's.whatsapp.net' : server);
-};
+export const isHostedLidUser = jid => (jid === null || jid === void 0 ? void 0 : jid.endsWith('@hosted.lid'))
+const botRegexp = /^1313555\d{4}$|^131655500\d{2}$/
+export const isJidBot = jid => jid && botRegexp.test(jid.split('@')[0]) && jid.endsWith('@c.us')
+export const jidNormalizedUser = jid => {
+	const result = jidDecode(jid)
+	if (!result) {
+		return ''
+	}
+	const { user, server } = result
+	return jidEncode(user, server === 'c.us' ? 's.whatsapp.net' : server)
+}
 export const transferDevice = (fromJid, toJid) => {
-    const fromDecoded = jidDecode(fromJid);
-    const deviceId = (fromDecoded === null || fromDecoded === void 0 ? void 0 : fromDecoded.device) || 0;
-    const { server, user } = jidDecode(toJid);
-    return jidEncode(user, server, deviceId);
-};
+	const fromDecoded = jidDecode(fromJid)
+	const deviceId = (fromDecoded === null || fromDecoded === void 0 ? void 0 : fromDecoded.device) || 0
+	const { server, user } = jidDecode(toJid)
+	return jidEncode(user, server, deviceId)
+}

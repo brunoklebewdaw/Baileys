@@ -80,35 +80,37 @@ export const generateLegacyButtonsPayload = (content: {
 	viewOnce?: boolean
 }) => {
 	return {
-		viewOnceMessage: content.viewOnce ? {
-			message: {
-				messageContextInfo: {
-					deviceListMetadata: {},
-					deviceListMetadataVersion: 2
-				},
-				buttonsMessage: proto.Message.ButtonsMessage.create({
-					contentText: content.text,
-					footerText: content.footer,
-					headerType: content.headerType,
-					buttons: content.buttons.map(btn => ({
-						buttonId: btn.buttonId,
-						buttonText: btn.buttonText,
-						type: btn.type || 1
-					}))
-				})
-			}
-		} : {
-			buttonsMessage: proto.Message.ButtonsMessage.create({
-				contentText: content.text,
-				footerText: content.footer,
-				headerType: content.headerType,
-				buttons: content.buttons.map(btn => ({
-					buttonId: btn.buttonId,
-					buttonText: btn.buttonText,
-					type: btn.type || 1
-				}))
-			})
-		}
+		viewOnceMessage: content.viewOnce
+			? {
+					message: {
+						messageContextInfo: {
+							deviceListMetadata: {},
+							deviceListMetadataVersion: 2
+						},
+						buttonsMessage: proto.Message.ButtonsMessage.create({
+							contentText: content.text,
+							footerText: content.footer,
+							headerType: content.headerType,
+							buttons: content.buttons.map(btn => ({
+								buttonId: btn.buttonId,
+								buttonText: btn.buttonText,
+								type: btn.type || 1
+							}))
+						})
+					}
+				}
+			: {
+					buttonsMessage: proto.Message.ButtonsMessage.create({
+						contentText: content.text,
+						footerText: content.footer,
+						headerType: content.headerType,
+						buttons: content.buttons.map(btn => ({
+							buttonId: btn.buttonId,
+							buttonText: btn.buttonText,
+							type: btn.type || 1
+						}))
+					})
+				}
 	}
 }
 
@@ -1502,14 +1504,10 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 		) => {
 			const payload = generateButtonPayload(content)
 			const messageId = generateMessageIDV2(sock.user?.id)
-			await relayMessage(
-				jid,
-				payload.viewOnceMessage.message as proto.IMessage,
-				{
-					messageId,
-					...options
-				}
-			)
+			await relayMessage(jid, payload.viewOnceMessage.message as proto.IMessage, {
+				messageId,
+				...options
+			})
 			return messageId
 		},
 		sendButtonsMessageLegacy: async (
@@ -1529,17 +1527,11 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 		) => {
 			const payload = generateLegacyButtonsPayload(content)
 			const messageId = generateMessageIDV2(sock.user?.id)
-			const message = content.viewOnce
-				? (payload as any).viewOnceMessage.message
-				: payload
-			await relayMessage(
-				jid,
-				message as proto.IMessage,
-				{
-					messageId,
-					...options
-				}
-			)
+			const message = content.viewOnce ? (payload as any).viewOnceMessage.message : payload
+			await relayMessage(jid, message as proto.IMessage, {
+				messageId,
+				...options
+			})
 			return messageId
 		}
 	}
