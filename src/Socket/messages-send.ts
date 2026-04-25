@@ -68,6 +68,113 @@ import {
 import { USyncQuery, USyncUser } from '../WAUSync'
 import { makeNewsletterSocket } from './newsletter'
 
+export const generateLegacyButtonsPayload = (content: {
+	text: string
+	footer?: string
+	buttons: Array<{
+		buttonId: string
+		buttonText: { displayText: string }
+		type?: number
+	}>
+	headerType?: number
+	viewOnce?: boolean
+}) => {
+	return {
+		viewOnceMessage: content.viewOnce ? {
+			message: {
+				messageContextInfo: {
+					deviceListMetadata: {},
+					deviceListMetadataVersion: 2
+				},
+				buttonsMessage: proto.Message.ButtonsMessage.create({
+					contentText: content.text,
+					footerText: content.footer,
+					headerType: content.headerType,
+					buttons: content.buttons.map(btn => ({
+						buttonId: btn.buttonId,
+						buttonText: btn.buttonText,
+						type: btn.type || 1
+					}))
+				})
+			}
+		} : {
+			buttonsMessage: proto.Message.ButtonsMessage.create({
+				contentText: content.text,
+				footerText: content.footer,
+				headerType: content.headerType,
+				buttons: content.buttons.map(btn => ({
+					buttonId: btn.buttonId,
+					buttonText: btn.buttonText,
+					type: btn.type || 1
+				}))
+			})
+		}
+	}
+}
+
+export const generateButtonPayload = (content: {
+	text: string
+	buttons: Array<{
+		type: 'reply' | 'url' | 'call' | 'copy'
+		label: string
+		id?: string
+		url?: string
+		phoneNumber?: string
+	}>
+}) => {
+	const buttons = content.buttons.map(btn => {
+		switch (btn.type) {
+			case 'reply':
+				return {
+					name: 'quick_reply',
+					buttonParamsJson: JSON.stringify({
+						display_text: btn.label,
+						id: btn.id
+					})
+				}
+			case 'url':
+				return {
+					name: 'cta_url',
+					buttonParamsJson: JSON.stringify({
+						display_text: btn.label,
+						url: btn.url
+					})
+				}
+			case 'call':
+				return {
+					name: 'cta_call',
+					buttonParamsJson: JSON.stringify({
+						display_text: btn.label,
+						phone_number: btn.phoneNumber
+					})
+				}
+			case 'copy':
+				return {
+					name: 'cta_copy',
+					buttonParamsJson: JSON.stringify({
+						display_text: btn.label,
+						copy_code: btn.id
+					})
+				}
+		}
+	})
+
+	return {
+		viewOnceMessage: {
+			message: {
+				messageContextInfo: {
+					deviceListMetadata: {},
+					deviceListMetadataVersion: 2
+				},
+				interactiveMessage: proto.Message.InteractiveMessage.create({
+					body: { text: content.text },
+					nativeFlowMessage: { buttons }
+				})
+			}
+		}
+	}
+}
+
 export const makeMessagesSocket = (config: SocketConfig) => {
 	const {
 		logger,
@@ -1378,6 +1485,62 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 
 				return fullMsg
 			}
+		},
+		sendButtonsMessage: async (
+			jid: string,
+			content: {
+				text: string
+				buttons: Array<{
+					type: 'reply' | 'url' | 'call' | 'copy'
+					label: string
+					id?: string
+					url?: string
+					phoneNumber?: string
+				}>
+			},
+			options: MiscMessageGenerationOptions = {}
+		) => {
+			const payload = generateButtonPayload(content)
+			const messageId = generateMessageIDV2(sock.user?.id)
+			await relayMessage(
+				jid,
+				payload.viewOnceMessage.message as proto.IMessage,
+				{
+					messageId,
+					...options
+				}
+			)
+			return messageId
+		},
+		sendButtonsMessageLegacy: async (
+			jid: string,
+			content: {
+				text: string
+				footer?: string
+				buttons: Array<{
+					buttonId: string
+					buttonText: { displayText: string }
+					type?: number
+				}>
+				headerType?: number
+				viewOnce?: boolean
+			},
+			options: MiscMessageGenerationOptions = {}
+		) => {
+			const payload = generateLegacyButtonsPayload(content)
+			const messageId = generateMessageIDV2(sock.user?.id)
+			const message = content.viewOnce
+				? (payload as any).viewOnceMessage.message
+				: payload
+			await relayMessage(
+				jid,
+				message as proto.IMessage,
+				{
+					messageId,
+					...options
+				}
+			)
+			return messageId
 		}
 	}
 }

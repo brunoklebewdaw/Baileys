@@ -113,7 +113,7 @@ const tabs = (n: number) => '\t'.repeat(n)
 
 export function binaryNodeToString(node: BinaryNode | BinaryNode['content'], i = 0): string {
 	if (!node) {
-		return node!
+		return ''
 	}
 
 	if (typeof node === 'string') {
